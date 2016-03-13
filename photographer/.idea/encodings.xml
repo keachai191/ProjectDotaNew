@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/AlbumController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/FacebookController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/routes.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/Photographer.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/addalbum.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/auth/password.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/auth/register.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/auth/reset.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/calender.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/edit.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/index.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/member.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/search.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/showsearch.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/ttt.blade.php" charset="UTF-8" />
+  </component>
+</project>

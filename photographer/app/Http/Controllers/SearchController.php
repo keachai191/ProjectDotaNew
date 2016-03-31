@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Photographer as Photographer ;
+use App\Models\Album as Album ;
+use App\Models\Photographer;
+use DB;
 
 
 class SearchController extends Controller
@@ -25,23 +27,64 @@ class SearchController extends Controller
 
     }*/
 
-         echo "<table><caption>ข้อมูลจากตาราง facebook_user </caption>";
+         /*echo "<table><caption>ข้อมูลจาssกตาราง facebook_user </caption>";
 
-         $phographer = Photographer::all();
-         foreach ($phographer as $phographers) {
+         
+
+         /*$money = \Input::get('money');
+         $helf = \Input::get('time');
+         $phographer = album::where('fullprice','>=',"$money")->get();*/
+
+         /*$phographer = album::select('*');*/
+         $money = \Input::get('money');
+         $helf = \Input::get('time');
+         $helf1 = \Input::get('time2');
+        $date = \Input::get('date');
+
+        if($helf=="1"){
+            
+              $users = DB::table('users')
+            /*->join('albums', 'users.id', '=', 'albums.photographer_id')*/
+            ->where('halfprice','<=',$money)
+                  ->orderBy('halfprice', 'asc')
+            ->get();      
+            
+        }else if ($helf=="2") {
+            
+              $users = DB::table('users')
+           /* ->join('albums', 'users.id', '=', 'albums.photographer_id')*/
+            ->where('fullprice','<=',$money)
+                  ->orderBy('fullprice', 'asc')
+            ->get();  
+            
+        }
+
+        
+       
+
+        
+        return view('showsearch')->with('photo',$users);
+
+
+       
+       
+        //return redirect('/showsearch');
+
+
+         /*foreach ($phographer as $phographers) {
 
              echo "<tr>";
-             echo "<td> $phographers->id;</td>
-               <td>$phographers->name;</td>
-               <td>$phographers->website;</td>
+             echo "<td>ไอดี $phographers->id;</td>
+               <td>ครึ่งวัน $phographers->fullprice;</td>
+               <td>เต็มวัน $phographers->halfprice;</td>
                <td>$phographers->email;</td>
-               <td>$phographers->addres;</td>
-               <td>$phographers->phonenumber;</td>";
+               ";
              echo "</tr>";
 
          }
          echo "</table>";
 
-       }
+       }*/
 
+}
 }

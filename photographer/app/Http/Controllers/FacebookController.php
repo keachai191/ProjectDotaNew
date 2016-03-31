@@ -4,29 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Socialite;
+use Illuminate\Routing\Controller;
 use App\Http\Requests;
 use App\Http\Controllers;
-use Laravel\Socialite\Facades\Socialite;
+
 
 
 class FacebookController extends Controller
 {
-    public function facebook()
-    {
-        {
-            return Socialite::driver('facebook')->redirect();
 
-        }
+    public function redirectToProvider()
+    {
+        return Socialize::with('facebook')->redirect();
     }
 
-    public function callback()
+    public function handleProviderCallback()
     {
-        {
-            $user = Socialite::driver('facebook')->user();
+        $user = Socialize::with('facebook')->user();
 
-             return $user->getName();
-
-        }
+        // $user->token;
     }
 
     public function index()

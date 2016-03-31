@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 
 <head>
 
@@ -38,7 +38,7 @@
 <body id="page-top" class="index">
 
 <!-- Navigation -->
-<--
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -115,7 +115,8 @@
                     <input type="url" size="30" name="url_al"/><br/><br>
 
                     <h4>รายละเอียดอัลบั้ม</h4>
-                    <input type="text" name="detail_al" size="25" value=""/><br>
+                    <textarea type="text" value="" name="detail_al" rows="5" cols="60">  </textarea><br/>
+
 
 
                     <!--<h4>ราคาจ้างงาน</h4>

@@ -18,7 +18,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
 
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href='assets/css/fullcalendar.css' rel='stylesheet'/>
     <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print'/>
@@ -28,13 +27,15 @@
     <script src='assets/js/fullcalendar.js'></script>
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('#calendar').fullCalendar({
-                defaultDate: '2016-03-12',
+                defaultDate: '2016-04-12',
+
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
-                events: 'http://localhost:8000/CalendarIndex'
+                events: 'http://localhost:85/Calendarsend',
+                eventColor: '#008080'
 
             });
 
@@ -62,7 +63,7 @@
 <body id="page-top" class="index">
 
 <!-- Navigation -->
-<--
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -80,6 +81,14 @@
 
         </div>
 
+        @if(Auth::check())
+
+            <a class="col-md-offset-4">{{Auth::user()->name}} : กำลังใช้งาน</a><br/>
+            <a class="col-md-offset-4" href="auth/logout">ออกจากระบบ</a>
+
+
+            @endif
+
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -93,38 +102,60 @@
     </div>
 
 </nav>
-<br/><br/><br/>
+<br/><br/><br/><br/><br/>
 
+<div class="container"><br/><br/>
 
-<center><h3>เพิ่มรายระเอียด</h3><br/>
+    <form action="home" method="get" enctype="multipart/form-data">
 
-
-    <form action="storecalendar" method="post" enctype="multipart/form-data">
         {!! csrf_field() !!}
 
-        <h4>รายเพิ่มเอียดของงาน</h4>
-
-        <textarea name="title" rows="" cols="60"></textarea><br/><br>
-
-        รับงานตั้งแต่วันที่ <input type="date" size="30" name="start" value="">
-        จนถึงวันที่<input type="date" size="30" name="end" value=""><br>
-
-        <label class="checkbox-inline"><input name="morning" type="checkbox" value="ช่วงเช้า" checked>ช่วงเช้า</label>
-        <label class="checkbox-inline"><input name="afternoon" type="checkbox" value="ช่วงบ่าย">ช่วงบ่าย</label>
-        <label class="checkbox-inline"><input name="evening" type="checkbox" value="ช่วงเย็น">ช่วงเย็น</label><br/>
-
-        <button class="btn btn-success" type="submit">ยืนยันการเพิ่มข้อมูล</button>
-
-
-        <br/><br/><br/>
-
+        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+        <button class="btn btn-warning" type="submit">ย้อนกลับ</button>
     </form>
-</center>
-<center><h1>ปฏิทินช่างภาพ</h1></center>
 
-<div id='calendar'></div>
 
+    <center><h3>เพิ่มรายละเอียดปฏิทิน</h3><br/>
+
+
+        @if(Auth::check())
+
+            <form action="storecalendar" method="post" enctype="multipart/form-data">
+                {!! csrf_field() !!}
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                <input type="hidden" name="url" value="/editcalendar">
+
+                <h4>หัวข้องาน</h4>
+
+                <textarea name="title" rows="" cols="60" required></textarea><br/><br>
+
+                รับงานตั้งแต่วันที่ <input type="date" size="30" name="start" value="" required>
+                จนถึงวันที่<input type="date" size="30" name="end" value="" required><br>
+
+                <label class="checkbox-inline"><input name="morning" type="checkbox" value="ช่วงเช้า"
+                                                      checked>ช่วงเช้า</label>
+                <label class="checkbox-inline"><input name="afternoon" type="checkbox" value="ช่วงบ่าย">ช่วงบ่าย</label>
+                <label class="checkbox-inline"><input name="evening" type="checkbox"
+                                                      value="ช่วงเย็น">ช่วงเย็น</label><br/>
+
+                <button class="btn btn-success" type="submit">ยืนยันการเพิ่มข้อมูล</button>
+
+                <br/><br/><br/>
+            </form>
+
+        @endif
+
+
+    </center>
+
+    <center><h1>ปฏิทินช่างภาพ</h1></center>
+
+
+    <div id='calendar'></div>
+
+</div>
 
 
 </body>
 </html>
+

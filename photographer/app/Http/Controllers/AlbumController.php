@@ -17,12 +17,10 @@ class AlbumController extends Controller
 
     public function index($userid)
     {
-       // $id = \Input::get('user_id');
-
 
         $albums = DB::table('users')
             ->join('albums', 'users.id', '=', 'albums.user_id')
-            ->where('users.id','=',$userid)
+            ->where('users.id', '=', $userid)
             ->get();
 
         return view('album')->withAlbums($albums);
@@ -45,7 +43,7 @@ class AlbumController extends Controller
     {
         $halfprice = $request->input('halfprice');
         $fullprice = $request->input('fullprice');
-        $detail_al =$request->input('detail_al');
+        $detail_al = $request->input('detail_al');
         $user_id = $request->input('user_id');
         $type_al = $request->input('type_al');
         $url_al = $request->input('url_al');
@@ -67,7 +65,7 @@ class AlbumController extends Controller
 
         $albums = DB::table('users')
             ->join('albums', 'users.id', '=', 'albums.user_id')
-            ->where('users.id','=',$id)
+            ->where('users.id', '=', $id)
             ->get();
 
         return view('album')->withAlbums($albums);
@@ -124,7 +122,7 @@ class AlbumController extends Controller
 
         $new_url_al->halfprice = $halfprice;
         $new_url_al->fullprice = $fullprice;
-        $new_url_al->detail_al =$detail_al;
+        $new_url_al->detail_al = $detail_al;
         $new_url_al->type_al = $type_al;
         $new_url_al->url_al = $url_al;
 
@@ -135,10 +133,10 @@ class AlbumController extends Controller
 
         $albums = DB::table('users')
             ->join('albums', 'users.id', '=', 'albums.user_id')
-            ->where('users.id','=',$userid)
+            ->where('users.id', '=', $userid)
             ->get();
 
-       return redirect('Album'.$userid)->withAlbums($albums);
+        return redirect('Album' . $userid)->withAlbums($albums);
     }
 
     /**
@@ -156,9 +154,9 @@ class AlbumController extends Controller
 
         $albums = DB::table('users')
             ->join('albums', 'users.id', '=', 'albums.user_id')
-            ->where('users.id','=',$userid)
+            ->where('users.id', '=', $userid)
             ->get();
 
-        return redirect('Album'.$userid)->withAlbums($albums);
+        return redirect('Album' . $userid)->withAlbums($albums);
     }
 }

@@ -160,8 +160,14 @@
                 <!-- ############################# Calendar ...  #####################################################-->
                 <div class="tab-pane fade" id="calendar">
 
+                    <h5>ตารางปฏิทิน </h5>
 
-                    <h1> .. </h1>
+
+                    <a href="Calendar" class="btn btn-info " aria-label="Left Align">
+                                <span class="glyphicon glyphicon-edit glyphicon-align-center"
+                                      aria-hidden="true">แก้ไข้ข้อมูลปฏิทิน</span>
+                    </a>
+
 
 
                 </div>
@@ -186,7 +192,6 @@
                                     <th class="col-md-3"><h4>ประเภท</h4></th>
                                     <th class="col-md-3"><h4>ที่อยู่อัลบัม</h4></th>
                                     <th class="col-md-3"><h4>รายระเอียดอัลบั้ม</h4></th>
-
                                 </tr>
 
 
@@ -203,10 +208,10 @@
                                             </td>
 
                                             <td>
-                                                <input type="text" name="url_al" size="30" value="{{$album->url_al}}"/>
+                                                <input type="text" name="url_al" size="30" value="{{$album->url_al}}"readonly/>
                                             </td>
                                             <td>
-                                                <input type="text" name="url_al" size="35" value="{{$album->detail_al}}"/>
+                                                <input type="text" name="url_al" size="35" value="{{$album->detail_al}}"readonly/>
                                             </td>
 
                                         </form>

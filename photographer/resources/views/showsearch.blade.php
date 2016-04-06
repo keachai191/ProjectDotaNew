@@ -96,10 +96,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <form method="GET" action="search">
-                    <button class="btn btn-danger" >  กลับ </button>
-                </form>
-                <br><br><h2>ผลลัพธ์</h2>
+                <ol class="breadcrumb">
+                    <li><a href="laravel/">หน้าหลัก</a></li>
+                    <li><a href="http://localhost:85/laravel/search">ค้นหา</a></li>
+                    <li class="active">เลือกช่างภาพ</li>
+                </ol>
+
+                <h2>ผลลัพธ์</h2>
+                <h4>ขั้นตอนที่ 2 เลือกช่างภาพที่ต้องการ</h4>
                 <hr class="star-primary">
             </div>
         </div>
@@ -111,6 +115,13 @@
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group" align="center">
                             <div class="form-inline" col-xs-4 >
+                                <h5>ผลการค้นหา จาก วันที่  {{$date}},
+                                    ราคา  {{$money}},
+                                    ระยะเวลา @if($helf == 1)ครึ่งวัน @elseif($helf == 2) เต็มวัน @endif,
+                                    ช่วงเวลา @if($helf1 == 1)ช่วงเช้า @elseif($helf1 == 2) ช่วงบ่าย  @elseif($helf1 == 3) ช่วงเย็น @endif
+
+
+                                    <h5>
                                 &nbsp;&nbsp;&nbsp;<h7>เรียงตาม</h7>&nbsp;&nbsp;&nbsp;
                                 <select class="form-control" >
                                     <option >งบประมาณ</option>
@@ -124,12 +135,13 @@
                 
              
                 
-                <center><h4><h4><br></center>
+
               
 
 
             <table class="col-md-12 table">
                                 <tr>
+
                                     <th class="col-md-3"><h4>รูปประจำตัว</h4></th>
                                     <th class="col-md-3"><h4>ชื่อ</h4></th>
                                     <th class="col-md-3"><h4>เต็มวัน</h4></th>
@@ -143,7 +155,7 @@
                                 @foreach ($photo as $photo) 
                                     <tr>
                                             <td>
-                                            <img src="public/assets/img/{{$photo->image}}" class="img-responsive" alt="">
+                                            <img src="assets/img/portfolio/{{$photo->image}}" class="img-responsive" alt="">
                                             </td>
                                             <td>
                                                 {{$photo->name}}

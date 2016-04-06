@@ -45,20 +45,6 @@ class SearchController extends Controller
         $date = \Input::get('date');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if($helf=="1"){
 
             session::put('data', \Input::get('date'));
@@ -113,6 +99,7 @@ class SearchController extends Controller
             $user = User::whereNotIn('id', $id)
                 ->where('halfprice', '<=', $money)
                 ->select('id', 'name','fullprice','halfprice','phonenumber','website')
+                ->orderBy('halfprice', 'ASC')
                 ->get();
             
         }else if ($helf=="2") {
@@ -169,6 +156,7 @@ class SearchController extends Controller
             $user = User::whereNotIn('id', $id)
                 ->where('fullprice', '<=', $money)
                 ->select('id', 'name','fullprice','halfprice','phonenumber','website')
+                ->orderBy('fullprice', 'ASC')
                 ->get();
             
         }
@@ -177,7 +165,11 @@ class SearchController extends Controller
        
 
         
-        return view('showsearch')->with('photo',$user);
+        return view('showsearch')->with('photo',$user)
+            ->with('money',$money)
+        ->with('helf',$helf)
+        ->with('helf1',$helf1)
+        ->with('date', \Input::get('date'));
 
 
        

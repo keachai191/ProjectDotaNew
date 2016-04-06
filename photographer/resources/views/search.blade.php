@@ -80,11 +80,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <form method="GET" action="index.blade.php">
-                    <button class="btn btn-danger" > กลับ </button>
-                </form>
+                <ol class="breadcrumb">
+                    <li><a href="laravel/">หน้าหลัก</a></li>
+                    <li class="active">ค้นหา</li>
+                    <li><a href="#">เลือกช่างภาพ</a></li>
+                </ol>
 
-                <br><br><h2>ค้นหาช่างภาพ</h2>
+
+                <h2>ค้นหาช่างภาพ</h2>
+                <h4>ขั้นตอนที่ 1 ค้นหาจากเงื่อนไขที่ต้องการ</h4>
                 <hr class="star-primary">
             </div>
         </div>
@@ -96,19 +100,24 @@
                 <form name="sentMessage" id="contactForm" novalidate>
                     <div class="row control-group" align="center">
                         <div class="form-inline" col-xs-4 >
+                            &nbsp;&nbsp;&nbsp;<h7>วันที่ต้องการเริ่มถ่ายภาพ</h7>&nbsp;&nbsp;&nbsp;
+                            <input class="form-control" type="date" name="date" required>
+
                             &nbsp;&nbsp;&nbsp;<h7>ระยะเวลาถ่าย</h7>&nbsp;&nbsp;&nbsp;
                             <select class="form-control" name="time">
                                 <option value="1">ครึ่งวัน</option>
                                 <option value="2">เต็มวัน</option>
                             </select>
-                            &nbsp;&nbsp;&nbsp;<h7>ช่วงเวลาที่ต้องการถ่าย</h7>&nbsp;&nbsp;&nbsp;
-                            <select class="form-control" name="time2">
-                                <option value="1">เช้า</option>
-                                <option value="2">บ่าย</option>
-                                <option value="2">เย็น</option>
+
+                            &nbsp;&nbsp;&nbsp;<h7>ช่วงเวลา</h7>&nbsp;&nbsp;&nbsp;
+                            <select class="form-control" name="time2" >
+                                <option >ช่วงเช้า</option>
+                                <option value="1">ช่วงเช้า</option>
+                                <option value="2">ช่วงบ่าย</option>
+                                <option value="2">ช่วงเย็น</option>
                             </select>
-                            &nbsp;&nbsp;&nbsp;<h7>งบประมาณ</h7>&nbsp;&nbsp;&nbsp;
-                            <input class="form-control" type="text" placeholder="งบประมาณ" name="money">
+
+
 
                         </div>
                     </div>
@@ -116,8 +125,9 @@
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group" align="center" >
                             <div class="form-inline" col-xs-4 >
-                                &nbsp;&nbsp;&nbsp;<h7>วันที่ต้องการถ่ายภาพ</h7>&nbsp;&nbsp;&nbsp;
-                                <input class="form-control" type="date" name="date">
+                                &nbsp;&nbsp;&nbsp;<h7>งบประมาณ</h7>&nbsp;&nbsp;&nbsp;
+                                <input class="form-control" type="text" placeholder="งบประมาณ" name="money" required>
+
 
 
 
@@ -128,7 +138,9 @@
                     <div class="row">
                         <div class="form-group col-xs-12" align="center">
 
-                                <br><p align="center"><button class="btn btn-success">ค้นหา</button></p>
+                                <br><button class="btn btn-success">ค้นหา</button>
+                           <button type="reset" class="btn btn-success">ล้างข้อมูล</button>
+
 
                             
 

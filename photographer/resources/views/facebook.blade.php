@@ -50,7 +50,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://se.ict.up.ac.th/photographerMatching">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
+            <a class="navbar-brand" href="/">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
 
             <!--<a class="navbar-brand" href="#page-top">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>-->
 
@@ -76,63 +76,11 @@
 </nav>
 
 
-<!-- Contact Section --> <!--facebook -->
-<section id="contact">
-    <div class="container">
-        @if(Auth::check())
-            <div class="col-md-6 col-md-offset-3">
-                <form method="post" action="update/{{Auth::user()->id}}">
-                    <?php echo csrf_field(); ?>
+<section>
 
-                    <input type="hidden" name="_method" value="PATCH"/>
+    <center><h3> ส่งคำขอร้อง</h3><br/>
+    <h3><a href="facebook" class="btn btn-primary">Login Facebook</a></h3></center>
 
-                    <h3> แก้ไขข้อมูลช่างภาพ</h3> <br>
-
-                    {{--<span class="col-md-2 glyphicon glyphicon-user" aria-hidden="true">รูปภาพ</span>
-                    <input type="file"  name="image" src="{{Auth::user()->image}}" required><br><br>--}}
-
-                    <span class="glyphicon glyphicon-user" aria-hidden="true">ชื่อติดต่อ</span>
-                    <input class="form-control" type="text" size="25" name="name" value="{{Auth::user()->name}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-home" aria-hidden="true">ที่อยู่</span>
-                    <input class="form-control" type="text" size="25" name="addres" value="{{Auth::user()->addres}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-globe" aria-hidden="true">สามารถรติดต่อได้ที่</span>
-                    <input class="form-control" type="url" size="25" name="website" value="{{Auth::user()->website}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-envelope" aria-hidden="true">อีเมล์</span>
-                    <input class="form-control" type="email" size="30" name="email" style="background: #C0F9BD"
-                           value="{{Auth::user()->email}} " readonly><br>
-
-                    <span class=" glyphicon glyphicon-phone" aria-hidden="true">เบอร์โทรศัพท์</span>
-                    <input class="form-control" type="tel" size="25" name="phonenumber"
-                           value="{{Auth::user()->phonenumber}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-camera" aria-hidden="true"> ราคา</span><br/>
-
-                    <div class="form-control"> ครึ่งวัน : <input type="number" min="0" name="halfprice" size="7"
-                                                                 value="{{Auth::user()->fullprice}}"/>
-                        เต็มวัน : <input type="number" name="fullprice" min="0" size="7"
-                                         value="{{Auth::user()->halfprice}}"/></div>
-                    <br/><br/>
-
-                    <button type="submit" class="btn btn-info " aria-label="Left Align">
-                    <span class="glyphicon glyphicon-edit glyphicon-align-center"
-                          aria-hidden="true">บันทึกการแก้ไข</span>
-                    </button>
-                </form>
-            </div>
-
-
-
-        @endif
-
-
-    </div>
 
 </section>
 

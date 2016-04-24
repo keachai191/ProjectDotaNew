@@ -34,7 +34,7 @@
 
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
-                events: 'http://localhost:85/Calendarsend',
+                events: 'http://localhost:8000/Calendarsend',
                 eventColor: '#008080'
 
             });
@@ -76,16 +76,16 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="/">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
-
+            <a href="/"><img src="assets/img/portfolio/Logo3.png"  width="500" height="100" ></a>
 
         </div>
 
         @if(Auth::check())
 
-            <a class="col-md-offset-4">{{Auth::user()->name}} : กำลังใช้งาน</a><br/>
-            <a class="col-md-offset-4" href="auth/logout">ออกจากระบบ</a>
-
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="home"><span class="glyphicon glyphicon-user"></span>คุณ {{Auth::user()->name}}</a></li>
+                <li><a href="auth/logout"><span class="glyphicon glyphicon-log-in"></span> ออกจากระบบ </a></li>
+            </ul>
 
             @endif
 
@@ -106,13 +106,7 @@
 
 <div class="container"><br/><br/>
 
-    <form action="home" method="get" enctype="multipart/form-data">
-
-        {!! csrf_field() !!}
-
-        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-        <button class="btn btn-warning" type="submit">ย้อนกลับ</button>
-    </form>
+    <a href="home" class="glyphicon glyphicon-home btn btn-warning" type="submit"> ย้อนกลับไปหน้า HOME</a>
 
 
     <center><h3>เพิ่มรายละเอียดปฏิทิน</h3><br/>
@@ -125,12 +119,11 @@
                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                 <input type="hidden" name="url" value="/editcalendar">
 
-                <h4>หัวข้องาน</h4>
 
                 <textarea name="title" rows="" cols="60" required></textarea><br/><br>
 
-                รับงานตั้งแต่วันที่ <input type="date" size="30" name="start" value="" required>
-                จนถึงวันที่<input type="date" size="30" name="end" value="" required><br>
+                รับงานตั้งแต่วันที่ <input type="date" min="<?php echo date("Y-m-d");?>" size="30" name="start" value="" required>
+                จนถึงวันที่<input type="date" min="<?php echo date("Y-m-d");?>" size="30" name="end" value="" required><br>
 
                 <label class="checkbox-inline"><input name="morning" type="checkbox" value="ช่วงเช้า"
                                                       checked>ช่วงเช้า</label>

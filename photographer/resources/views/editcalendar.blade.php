@@ -44,16 +44,17 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="/">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
+            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="500" height="100"></a>
 
 
         </div>
 
         @if(Auth::check())
 
-            <a class="col-md-offset-4">{{Auth::user()->name}} : กำลังใช้งาน</a><br/>
-            <a class="col-md-offset-4" href="auth/logout">ออกจากระบบ</a>
-
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="home"><span class="glyphicon glyphicon-user"></span>คุณ {{Auth::user()->name}}</a></li>
+                <li><a href="auth/logout"><span class="glyphicon glyphicon-log-in"></span> ออกจากระบบ </a></li>
+            </ul>
 
             @endif
 
@@ -69,7 +70,7 @@
     </div>
 
 </nav>
-<br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/>
 
 <div class="container"><br/><br/>
 
@@ -78,16 +79,15 @@
         <button class="btn btn-warning" type="submit">ย้อนกลับ</button>
     </form>
     @foreach($calendars as $calendar)
-    <table class="col-md-12 table">
-        <tr>
-            <th class="col-md-3"><h4>หัวข้อ</h4></th>
-            <th class="col-md-2"><h4>วันที่เริ่มงาน</h4></th>
-            <th class="col-md-2"><h4>วันที่สิ้นสุดกานทำงาน</h4></th>
-            <th class="col-md-1"><h4>ช่วงเวลา</h4></th>
-            <th class="col-md-1"><h4>แก้ไข</h4></th>
-            <th class="col-md-1"><h4>ลบ</h4></th>
-        </tr>
-
+        <table class="col-md-12 table">
+            <tr>
+                <th class="col-md-3"><h4>หัวข้อ</h4></th>
+                <th class="col-md-2"><h4>วันที่เริ่มงาน</h4></th>
+                <th class="col-md-2"><h4>วันที่สิ้นสุดกานทำงาน</h4></th>
+                <th class="col-md-1"><h4>ช่วงเวลา</h4></th>
+                <th class="col-md-1"><h4>แก้ไข</h4></th>
+                <th class="col-md-1"><h4>ลบ</h4></th>
+            </tr>
 
 
             <form action="/CalendarUpdate{{$calendar->id}}" method="post">
@@ -97,29 +97,36 @@
                 <input type="hidden" name="url" value="/editcalendar">
                 <tr>
                     <td><input class="form-control" type="text" name="title" value="{{$calendar->title}}"></td>
-                    <td><input class="form-control" type="date" name="start" size="" value="{{$calendar->start}}"></td>
-                    <td><input class="form-control" type="date" name="end" value="{{$calendar->end}}">
+                    <td><input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" name="start" size=""
+                               value="{{$calendar->start}}"></td>
+                    <td><input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" name="end"
+                               value="{{$calendar->end}}">
                     <td>
 
 
-
-                            <input type="checkbox" name="morning" value="ช่วงเช้า" <?php if($calendar->morning != null)  echo "checked"; ?> >  ช่วงเช้า <br>
-                            <input type="checkbox" name="afternoon" value="ช่วงบ่าย" <?php if($calendar->afternoon != null)  echo "checked"; ?> >  ช่วงบ่าย <br>
-                            <input type="checkbox" name="evening" value="ช่วงเย็น" <?php if($calendar->evening != null)  echo "checked"; ?> >  ช่วงเย็น <br>
+                        <input type="checkbox" name="morning"
+                               value="ช่วงเช้า" <?php if ($calendar->morning != null) echo "checked"; ?> > ช่วงเช้า <br>
+                        <input type="checkbox" name="afternoon"
+                               value="ช่วงบ่าย" <?php if ($calendar->afternoon != null) echo "checked"; ?> > ช่วงบ่าย
+                        <br>
+                        <input type="checkbox" name="evening"
+                               value="ช่วงเย็น" <?php if ($calendar->evening != null) echo "checked"; ?> > ช่วงเย็น <br>
                         {{--@elseif($calendar->afternoon != null)--}}
-                            {{--<input type="checkbox" name="afternoon" value="ช่วงเช้า"> ช่วงเช้า <br>--}}
-                            {{--<input type="checkbox" name="afternoon" value="ช่วงบ่าย" checked> ช่วงบ่าย <br>--}}
-                            {{--<input type="checkbox" name="afternoon" value="ช่วงเย็น"> ช่วงเย็น <br>--}}
+                        {{--<input type="checkbox" name="afternoon" value="ช่วงเช้า"> ช่วงเช้า <br>--}}
+                        {{--<input type="checkbox" name="afternoon" value="ช่วงบ่าย" checked> ช่วงบ่าย <br>--}}
+                        {{--<input type="checkbox" name="afternoon" value="ช่วงเย็น"> ช่วงเย็น <br>--}}
                         {{--@elseif($calendar->evening != null)--}}
-                            {{--<input type="checkbox" name="evening" value="ช่วงเช้า"> ช่วงเช้า <br>--}}
-                            {{--<input type="checkbox" name="evening" value="ช่วงบ่าย"> ช่วงบ่าย <br>--}}
-                            {{--<input type="checkbox" name="evening" value="ช่วงเย็น" checked> ช่วงเย็น <br>--}}
+                        {{--<input type="checkbox" name="evening" value="ช่วงเช้า"> ช่วงเช้า <br>--}}
+                        {{--<input type="checkbox" name="evening" value="ช่วงบ่าย"> ช่วงบ่าย <br>--}}
+                        {{--<input type="checkbox" name="evening" value="ช่วงเย็น" checked> ช่วงเย็น <br>--}}
 
 
                     </td>
 
                     <td>
-                        <button class="btn btn-info" type="submit"> แก้ไข</button>
+                        <button class="glyphicon glyphicon-pencil btn btn-success" type="submit"
+                                onclick="return confirmEdit();"> แก้ไข
+                        </button>
                     </td>
             </form>
 
@@ -129,15 +136,27 @@
 
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
-                    <button class="btn btn-danger" type="submit" onclick="return confirmDel();"> ลบ</button>
+                    <button class="glyphicon glyphicon-remove btn btn-danger" type="submit" onclick="return confirmDel();"> ลบ</button>
 
                     <script>
-                        function confirmDel(){
+                        function confirmDel() {
 
-                            var  x = confirm("แน่ใจเหย่อออออออออออออ")
-                            if(x)
+                            var x = confirm(" <?php echo  "คุณต้องการลบหัวข้อ {$calendar->title} ใช่หรือไม่! " ?> ")
+                            if (x)
                                 return true;
-                            else{
+                            else {
+                                return false;
+                            }
+                        }
+
+                    </script>
+                    <script>
+                        function confirmEdit() {
+
+                            var x = confirm(" <?php echo  "คุณต้องแก้ไขหัวข้อ {$calendar->title} ใช่หรือไม่! " ?> ")
+                            if (x)
+                                return true;
+                            else {
                                 return false;
                             }
                         }
@@ -150,8 +169,7 @@
             </tr>
 
 
-
-    </table>
+        </table>
     @endforeach
 </div>
 

@@ -52,7 +52,8 @@
             </button>
 
             <!--<a class="navbar-brand" href="#page-top">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>-->
-                <a class="navbar-brand" href="index.blade.php">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
+            <a href="/"><img src="assets/img/portfolio/Logo3.png"  width="500" height="100" ></a>
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,7 +73,7 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
-</nav>
+</nav><br/><br/><br/><br/>
 
 
 <!-- Contact Section -->
@@ -81,9 +82,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <ol class="breadcrumb">
-                    <li><a href="laravel/">หน้าหลัก</a></li>
+                    <li><a href="/">หน้าหลัก</a></li>
                     <li class="active">ค้นหา</li>
-                    <li><a href="#">เลือกช่างภาพ</a></li>
                 </ol>
 
 
@@ -93,63 +93,64 @@
             </div>
         </div>
         <form method="get" action='s'>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                <form name="sentMessage" id="contactForm" novalidate>
-                    <div class="row control-group" align="center">
-                        <div class="form-inline" col-xs-4 >
-                            &nbsp;&nbsp;&nbsp;<h7>วันที่ต้องการเริ่มถ่ายภาพ</h7>&nbsp;&nbsp;&nbsp;
-                            <input class="form-control" type="date" name="date" required>
-
-                            &nbsp;&nbsp;&nbsp;<h7>ระยะเวลาถ่าย</h7>&nbsp;&nbsp;&nbsp;
-                            <select class="form-control" name="time">
-                                <option value="1">ครึ่งวัน</option>
-                                <option value="2">เต็มวัน</option>
-                            </select>
-
-                            &nbsp;&nbsp;&nbsp;<h7>ช่วงเวลา</h7>&nbsp;&nbsp;&nbsp;
-                            <select class="form-control" name="time2" >
-                                <option >ช่วงเช้า</option>
-                                <option value="1">ช่วงเช้า</option>
-                                <option value="2">ช่วงบ่าย</option>
-                                <option value="2">ช่วงเย็น</option>
-                            </select>
-
-
-
-                        </div>
-                    </div>
-                    <br>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="sentMessage" id="contactForm" novalidate>
-                        <div class="row control-group" align="center" >
+                        <div class="row control-group" align="center">
                             <div class="form-inline" col-xs-4 >
-                                &nbsp;&nbsp;&nbsp;<h7>งบประมาณ</h7>&nbsp;&nbsp;&nbsp;
-                                <input class="form-control" type="text" placeholder="งบประมาณ" name="money" required>
+                                &nbsp;&nbsp;&nbsp;<h7>วันที่ต้องการเริ่มถ่ายภาพ</h7>&nbsp;&nbsp;&nbsp;
+                                <input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" name="date" required>
 
+                                &nbsp;&nbsp;&nbsp;<h7>ระยะเวลาถ่าย</h7>&nbsp;&nbsp;&nbsp;
+                                <select class="form-control" name="time" >
+                                    <option value="1">ครึ่งวัน</option>
+                                    <option value="2">เต็มวัน</option>
+                                </select>
 
+                                &nbsp;&nbsp;&nbsp;<h7>ช่วงเวลา</h7>&nbsp;&nbsp;&nbsp;
+                                <select class="form-control" name="time2" >
+                                    <option value="1">ช่วงเช้า</option>
+                                    <option value="2">ช่วงบ่าย</option>
+                                    <option value="3">ช่วงเย็น</option>
+                                </select>
 
 
 
                             </div>
                         </div>
-                    <div id="success"></div>
-                    <div class="row">
-                        <div class="form-group col-xs-12" align="center">
+                        <br>
+                        <form name="sentMessage" id="contactForm" novalidate>
+                            <div class="row control-group" align="center" >
+                                <div class="form-inline" col-xs-4 >
+                                    &nbsp;&nbsp;&nbsp;<h7>งบประมาณต่อระยะเวลาถ่าย</h7>&nbsp;&nbsp;&nbsp;
+                                    <input class="form-control" type="number" min="0" placeholder="งบประมาณ(บาท)" name="money" maxlength="5" required>
 
-                                <br><button class="btn btn-success">ค้นหา</button>
-                           <button type="reset" class="btn btn-success">ล้างข้อมูล</button>
 
 
-                            
 
-                        </div>
-                    </div>
-                </form>
+
+
+
+                                </div>
+                            </div>
+                            <div id="success"></div>
+                            <div class="row">
+                                <div class="form-group col-xs-12" align="center">
+
+                                    <br><button class="btn btn-success">ค้นหา</button>
+                                    <button type="reset" class="btn btn-default">ล้างข้อมูล</button>
+
+
+
+
+                                </div>
+                            </div>
+                        </form>
+                </div>
             </div>
-        </div>
-            </form>
+        </form>
     </div>
 
 </section>

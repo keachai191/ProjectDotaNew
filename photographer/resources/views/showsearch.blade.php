@@ -65,7 +65,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.blade.php">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
+
+            <a href="/"><img src="assets/img/portfolio/Logo3.png"  width="500" height="100" ></a>
+
 
             <!--<a class="navbar-brand" href="#page-top">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>-->
 
@@ -88,7 +90,7 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
-</nav>
+</nav><br/><br/><br/>
 
 
 <!-- Contact Section -->
@@ -97,8 +99,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <ol class="breadcrumb">
-                    <li><a href="laravel/">หน้าหลัก</a></li>
-                    <li><a href="http://localhost:85/laravel/search">ค้นหา</a></li>
+                    <li><a href="/">หน้าหลัก</a></li>
+                    <li><a href="/search">ค้นหา</a></li>
                     <li class="active">เลือกช่างภาพ</li>
                 </ol>
 
@@ -122,67 +124,71 @@
 
 
                                     <h5>
-                                &nbsp;&nbsp;&nbsp;<h7>เรียงตาม</h7>&nbsp;&nbsp;&nbsp;
-                                <select class="form-control" >
-                                    <option >งบประมาณ</option>
-                                    <option>คะแนน</option>
-                                </select>
+                                        &nbsp;&nbsp;&nbsp;<h7>เรียงตาม</h7>&nbsp;&nbsp;&nbsp;
+                                        <select class="form-control" >
+                                            <option >งบประมาณ</option>
+                                            <option>คะแนน</option>
+                                        </select>
                             </div>
                         </div>
                         <br>
-                            
-        
-                
-             
-                
-
-              
 
 
-            <table class="col-md-12 table">
+
+
+
+
+
+
+
+                        <table class="col-md-12 table">
+                            <tr>
+
+                                <th class="col-md-3"><h4>รูปประจำตัว</h4></th>
+                                <th class="col-md-3"><h4>ชื่อ</h4></th>
+                                <th class="col-md-3"><h4>เต็มวัน</h4></th>
+                                <th class="col-md-3"><h4>ครึ่งวัน</h4></th>
+                                <th class="col-md-3"><h4>เบอร์ติดต่อ</h4></th>
+                                <th class="col-md-2"><h4>สามารถติดต่อได้ที่</h4></th>
+                                <th class="col-md-1"><h4> </h4></th>
+
+                            </tr>
+
+
+                            @foreach ($photo as $photo)
                                 <tr>
+                                    <td>
+                                        <img src="assets/img/portfolio/{{$photo->image}}"  width="50" height="50"alt="">
+                                    </td>
+                                    <td>
+                                        {{$photo->name}}
+                                    </td>
 
-                                    <th class="col-md-3"><h4>รูปประจำตัว</h4></th>
-                                    <th class="col-md-3"><h4>ชื่อ</h4></th>
-                                    <th class="col-md-3"><h4>เต็มวัน</h4></th>
-                                    <th class="col-md-3"><h4>ครึ่งวัน</h4></th>
-                                    <th class="col-md-3"><h4>เบอร์ติดต่อ</h4></th>
-                                    <th class="col-md-3"><h4>เว็บไซต์</h4></th>
-
-                                </tr>
-
-
-                                @foreach ($photo as $photo) 
-                                    <tr>
-                                            <td>
-                                            <img src="assets/img/portfolio/{{$photo->image}}" class="img-responsive" alt="">
-                                            </td>
-                                            <td>
-                                                {{$photo->name}}
-                                            </td>
-
-                                            <td>
-                                                {{$photo->fullprice}}
-                                            </td>
-                                            <td>
-                                                {{$photo->halfprice}}
-                                            </td>
-                                            <td>
-                                                {{$photo->phonenumber}}
-                                            </td>
-                                            <td>
-                                                {{$photo->website}}
-                                            </td>
-
-                                            
-
-                                        
+                                    <td>
+                                        {{$photo->fullprice}}
+                                    </td>
+                                    <td>
+                                        {{$photo->halfprice}}
+                                    </td>
+                                    <td>
+                                        {{$photo->phonenumber}}
+                                    </td>
+                                    <td>
+                                        {{$photo->website}}
+                                    </td>
+                                    <td>
+                                        <a href="ShowProfile{{$photo->name}}"> ข้อมูล </a>
+                                    </td>
 
 
 
-                                 @endforeach
 
-                            </table>
+
+
+
+                            @endforeach
+
+                        </table>
 
 
 

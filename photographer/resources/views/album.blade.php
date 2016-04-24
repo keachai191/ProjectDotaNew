@@ -50,46 +50,49 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
 
-            <!--<a class="navbar-brand" href="#page-top">����ͻ���पѹ�Ѵ�Ҫ�ҧ�Ҿ</a>-->
+            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="500" height="100"></a>
+
 
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        @if(Auth::check())
+
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <!--<li class="page-scroll">
-                    <a href="#portfolio">�Ѵ�ѹ�Ѻ��ҧ�Ҿ</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="#about">��ҧ�Ҿ��к�</a>
-                </li>-->
+                <li><a href="home"><span class="glyphicon glyphicon-user"></span>คุณ {{Auth::user()->name}}</a></li>
+                <li><a href="auth/logout"><span class="glyphicon glyphicon-log-in"></span> ออกจากระบบ </a></li>
             </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+
+            @endif
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <!--<li class="page-scroll">
+                        <a href="#portfolio">�Ѵ�ѹ�Ѻ��ҧ�Ҿ</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">��ҧ�Ҿ��к�</a>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
 </nav>
+<br/><br/>
 
 
 <!-- Contact Section --> <!--facebook -->
 <section id="contact">
     <div class="container"><br/><br/>
-
-        <form action="home" method="get" enctype="multipart/form-data">
-
-            {!! csrf_field() !!}
-
-            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-            <button class="btn btn-warning" type="submit">ย้อนกลับ</button>
-        </form>
+        <a href="home" class="glyphicon glyphicon-home btn btn-warning" type="submit"> ย้อนกลับไปหน้า HOME</a><br/>
 
         @if(Auth::check())
-            <center><h1>เพิ่มอัลบัม</h1><br/>
+            <center><h1>เพิ่มอัลบัม</h1>
 
                 <h4>ประเภทของอัลบัม</h4>
 
@@ -112,27 +115,35 @@
                     </label><br/>
 
                     <h4>ที่อยู่อัลบัม</h4>
-                    <input type="url" size="30" name="url_al"/><br/><br>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <input class="form-control" type="url"
+                                   size="30" name="url_al"/></div>
+                    </div>
 
                     <h4>รายละเอียดอัลบั้ม</h4>
-                    <textarea type="text" value="" name="detail_al" rows="5" cols="60">  </textarea><br/>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <textarea class="form-control" type="text" value="" name="detail_al" rows="5" cols="60">  </textarea>
+                        </div><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
-
-                    <!--<h4>ราคาจ้างงาน</h4>
-                    <span>ครึ่งวัน</span>
-                    <input type="name" size="10" name="halfprice" value="" required>
-                    <span>เต็มวัน</span>
-                    <input type="name" size="10" name="fullprice" value="" required><br><br>-->
-
-
-                    <button class="btn btn-success" type="submit">เพิ่มอัลบัม</button>
-                    &nbsp; &nbsp; &nbsp;
+                        <!--<h4>ราคาจ้างงาน</h4>
+                        <span>ครึ่งวัน</span>
+                        <input type="name" size="10" name="halfprice" value="" required>
+                        <span>เต็มวัน</span>
+                        <input type="name" size="10" name="fullprice" value="" required><br><br>-->
 
 
-                    <br/><br/><br/>
-
+                        <center><button class="btn btn-success" type="submit">เพิ่มอัลบัม</button></center>
+                        &nbsp; &nbsp; &nbsp;
                 </form>
+
+                    <center>
+
+
             </center>
 
 
@@ -153,10 +164,8 @@
                             {!! csrf_field() !!}
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <td>
-                                <input type="text" name="type_al" value="{{$album->type_al}}"
-                                       style="background: #98EFFC"
-                                       readonly/>
-                                <select name="type_al">
+
+                                <select class="form-control" style="background: #98EFFC" name="type_al">
                                     <option> {{$album->type_al}}</option>
                                     <option>ฟรีเวดดิ้ง</option>
                                     <option>งานแต่ง</option>
@@ -165,17 +174,23 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="url_al" size="30" value="{{$album->url_al}}"/>
+                                <input class="form-control" style="background: #fbf9ee" type="text" name="url_al"
+                                       size="30"
+                                       value="{{$album->url_al}}"/>
                             </td>
                             <td>
-                                <input type="text" name="detail_al" size="30" value="{{$album->detail_al}}"/>
+                                <input class="form-control" style="background: #fbf9ee" type="text" name="detail_al"
+                                       size="30"
+                                       value="{{$album->detail_al}}"/>
                             </td>
                             <!--<td>
                                 ครึ่งวัน : <input type="text" name="halfprice" size="7" value="{{$album->halfprice}}"/>
                                 เต็มวัน : <input type="text" name="fullprice" size="7" value="{{$album->fullprice}}"/>
                             </td>-->
                             <td>
-                                <button class="btn btn-info" type="submit"> แก้ไข</button>
+                                <button class="glyphicon glyphicon-pencil btn btn-success" type="submit"
+                                        onclick="return confirmEdit();"> แก้ไข
+                                </button>
                             </td>
                         </form>
 
@@ -185,14 +200,41 @@
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
-                                <button class="btn btn-danger" type="submit"> ลบ</button>
+                                <button class="glyphicon glyphicon-remove btn btn-danger" type="submit"
+                                        onclick="return confirmDel();"> ลบ
+                                </button>
 
                             </form>
                         </td>
 
 
+                        @endforeach
+                        <script>
+                            function confirmDel() {
 
-                @endforeach
+                                var x = confirm
+                                (" <?php echo  "คุณต้องการลบAlbum  ใช่หรือไม่! " ?> ")
+                                if (x)
+                                    return true;
+                                else {
+                                    return false;
+                                }
+                            }
+
+                        </script>
+                        <script>
+                            function confirmEdit() {
+
+                                var x = confirm
+                                (" <?php echo  "คุณต้องแก้ไขAlbum ใช่หรือไม่! " ?> ")
+                                if (x)
+                                    return true;
+                                else {
+                                    return false;
+                                }
+                            }
+
+                        </script>
 
             </table>
         @endif

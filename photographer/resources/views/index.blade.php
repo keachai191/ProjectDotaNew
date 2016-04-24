@@ -21,7 +21,8 @@
     <!-- Custom Fonts -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +54,6 @@
             border-radius: 8px;
         }
 
-
         .button1:hover {
             background-color: #23F7CD;;
             color: white;
@@ -74,20 +74,24 @@
             -webkit-transition-duration: 0.4s;
             cursor: pointer;
         }
+
         .buttonh1 {
             border-radius: 50%;
             background-color: white;
             color: black;
-            }
+        }
+
         .buttonh2 {
             border-radius: 50%;
             background-color: white;
             color: black;
         }
+
         .buttonh1:hover {
             background-color: black;
             color: white;
         }
+
         .buttonh2:hover {
             background-color: black;
             color: white;
@@ -102,20 +106,27 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#page-top">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+            <a href="/"><img src="assets/img/portfolio/Logo3.png"  width="500" height="100" ></a>
+
+        </div>
+        @if(Auth::check())
+                <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+
                 <li class="hidden">
                     <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll ">
+                    <a href="#search">ค้นหาช่างภาพ</a>
                 </li>
                 <li class="page-scroll">
                     <a href="#portfolio">จัดอันดับช่างภาพ</a>
@@ -125,43 +136,56 @@
                 </li>
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    @if(Auth::check())
+        {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="home"><span class="glyphicon glyphicon-user "></span>คุณ {{Auth::user()->name}}</a>
+                </li>
+                <li>
+                    <a href="auth/logout"><span class="glyphicon glyphicon-log-in"></span> ออกจากระบบ </a>
+                </li>
+            </ul>
 
-        <a class="col-md-offset-9" href="home">{{Auth::user()->name}} : HOME</a>
-        <a class="col-md-offset-9" href="auth/logout">ออกจากระบบ</a>
-
-
+        </div>--}}
         @endif
+                <!-- /.navbar-collapse -->
+    </div>
+
+
     <!-- /.container-fluid -->
 </nav>
 
 <!-- Header -->
 <header>
     <div class="container">
+
+
         <div class="row">
             <div class="col-md-12">
-                <img class="img-responsive" src="assets/img/profile.png" alt="">
-                <div class="intro-text" >
-                    <span  class="name"  ><h2> หาช่างภาพที่ใช่ ใน 3 ขั้นตอน </h2></span>
+
+                <img id="search" class="img-responsive" src="assets/img/profile.png" alt="">
+                <div class="intro-text">
+                    <span  class="name"><h3> หาช่างภาพที่ใช่ ใน 3 ขั้นตอน </h3></span>
                     <hr class="star-light">
-                    <form method="GET" >
-                    <a href="./search" class="buttonh buttonh1">หาช่างภาพ</a>
-                    <a href="./login" class="buttonh buttonh2">เป็นช่างภาพ</a>
+
+                    <form method="GET">
+                        <a href="/search" class="buttonh buttonh1">หาช่างภาพ</a>
+                        <a href="./login" class="buttonh buttonh2">เป็นช่างภาพ</a>
                     </form>
 
                 </div>
             </div>
         </div>
-    </div><br><br><br><br><br><br>
+
+    </div>
+    <br><br><br><br><br><br>
 </header>
 
 <!-- Portfolio Grid Section -->
 <section id="portfolio">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
+        <div  class="row">
+            <div  class="col-lg-12 text-center">
                 <h2>จัดอันดับช่างภาพ</h2>
                 <hr class="star-primary">
             </div>
@@ -174,7 +198,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    1.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    1.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
             </div>
             <div class="col-sm-3 portfolio-item">
@@ -184,7 +209,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    2.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    2.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
             </div>
             <div class="col-sm-3 portfolio-item">
@@ -194,7 +220,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    3.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    3.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
             </div>
             <div class="col-sm-3 portfolio-item">
@@ -204,7 +231,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    4.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    4.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
             </div>
             <div class="col-sm-3 portfolio-item">
@@ -214,7 +242,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    5.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    5.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
             </div>
             <div class="col-sm-3 portfolio-item">
@@ -224,7 +253,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    6.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    6.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
             </div>
             <div class="col-sm-3 portfolio-item">
@@ -234,7 +264,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    7.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    7.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
             </div>
             <div class="col-sm-3 portfolio-item">
@@ -244,7 +275,8 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    8.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img src="assets/img/portfolio/like.png" class="img-responsive" alt="">
+                    8.<img src="assets/img/portfolio/test.jpg" class="img-responsive" alt=""><img
+                            src="assets/img/portfolio/like.png" class="img-responsive" alt="">
                 </a>
                 <br><br><br><br><br><br>
             </div>
@@ -339,6 +371,7 @@
             <div class="row">
                 <div class="footer-col col-md-4">
                     <h3>Location</h3>
+
                     <p>University Of Phayao</p>
                 </div>
                 <div class="footer-col col-md-4">
@@ -363,7 +396,10 @@
                 </div>
                 <div class="footer-col col-md-4">
                     <h3>About The Website</h3>
-                    <p>Use for fine Photoghraper. My fanpage<a href="https://www.facebook.com/photographerMatching/?ref=hl">PhotographerMatching Community</a>.</p>
+
+                    <p>Use for fine Photoghraper. My fanpage<a
+                                href="https://www.facebook.com/photographerMatching/?ref=hl">PhotographerMatching
+                            Community</a>.</p>
                 </div>
             </div>
         </div>
@@ -402,7 +438,11 @@
                         <h2>Project Title</h2>
                         <hr class="star-primary">
                         <img src="assets/img/portfolio/test.jpg" class="img-responsive img-centered" alt="">
-                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set
+                            by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
+                            download their free set with 16 icons, or you can purchase the entire set with 146 icons for
+                            only $12!</p>
                         <ul class="list-inline item-details">
                             <li>Client:
                                 <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -417,7 +457,9 @@
                                 </strong>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -439,7 +481,11 @@
                         <h2>Project Title</h2>
                         <hr class="star-primary">
                         <img src="assets/img/portfolio/test.jpg" class="img-responsive img-centered" alt="">
-                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set
+                            by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
+                            download their free set with 16 icons, or you can purchase the entire set with 146 icons for
+                            only $12!</p>
                         <ul class="list-inline item-details">
                             <li>Client:
                                 <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -454,7 +500,9 @@
                                 </strong>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -476,7 +524,11 @@
                         <h2>Project Title</h2>
                         <hr class="star-primary">
                         <img src="assets/img/portfolio/test.jpg" class="img-responsive img-centered" alt="">
-                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set
+                            by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
+                            download their free set with 16 icons, or you can purchase the entire set with 146 icons for
+                            only $12!</p>
                         <ul class="list-inline item-details">
                             <li>Client:
                                 <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -491,7 +543,9 @@
                                 </strong>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -513,7 +567,11 @@
                         <h2>Project Title</h2>
                         <hr class="star-primary">
                         <img src="assets/img/portfolio/test.jpg" class="img-responsive img-centered" alt="">
-                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set
+                            by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
+                            download their free set with 16 icons, or you can purchase the entire set with 146 icons for
+                            only $12!</p>
                         <ul class="list-inline item-details">
                             <li>Client:
                                 <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -528,7 +586,9 @@
                                 </strong>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -550,7 +610,11 @@
                         <h2>Project Title</h2>
                         <hr class="star-primary">
                         <img src="assets/img/portfolio/test.jpg" class="img-responsive img-centered" alt="">
-                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set
+                            by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
+                            download their free set with 16 icons, or you can purchase the entire set with 146 icons for
+                            only $12!</p>
                         <ul class="list-inline item-details">
                             <li>Client:
                                 <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -565,7 +629,9 @@
                                 </strong>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -587,7 +653,11 @@
                         <h2>Project Title</h2>
                         <hr class="star-primary">
                         <img src="assets/img/portfolio/test.jpg" class="img-responsive img-centered" alt="">
-                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+                        <p>Use this area of the page to describe your project. The icon above is part of a free icon set
+                            by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
+                            download their free set with 16 icons, or you can purchase the entire set with 146 icons for
+                            only $12!</p>
                         <ul class="list-inline item-details">
                             <li>Client:
                                 <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -602,7 +672,9 @@
                                 </strong>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>

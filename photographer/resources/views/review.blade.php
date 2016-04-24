@@ -14,6 +14,9 @@
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
+    <!--test-->
+    <link href="assets/nou/nouislider.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="assets/css/freelancer.css" rel="stylesheet">
 
@@ -21,9 +24,7 @@
     <!-- Custom Fonts -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css">
-
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,24 +36,23 @@
 
 </head>
 
+
 <body id="page-top" class="index">
 
 <!-- Navigation -->
-<--
-<nav class="navbar navbar-default navbar-fixed-top">
+<--<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://se.ict.up.ac.th/photographerMatching">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
 
             <!--<a class="navbar-brand" href="#page-top">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>-->
+            <a href="/"><img src="assets/img/portfolio/Logo3.png"  width="500" height="100" ></a>
 
         </div>
 
@@ -73,65 +73,46 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
-</nav>
+</nav><br/><br/><br/><br/>
 
 
-<!-- Contact Section --> <!--facebook -->
+<!-- Contact Section -->
 <section id="contact">
     <div class="container">
-        @if(Auth::check())
-            <div class="col-md-6 col-md-offset-3">
-                <form method="post" action="update/{{Auth::user()->id}}">
-                    <?php echo csrf_field(); ?>
+        <div class="row"><center>
+            <div class="col-lg-12 text-center">
+                <ol class="breadcrumb">
+                    <li><a href="/">หน้าหลัก</a></li>
+                    <li class="active">ค้นหา</li>
+                </ol>
 
-                    <input type="hidden" name="_method" value="PATCH"/>
 
-                    <h3> แก้ไขข้อมูลช่างภาพ</h3> <br>
+                <h2>ประเมิณช่างภาพ</h2>
+                <hr class="star-primary">
 
-                    {{--<span class="col-md-2 glyphicon glyphicon-user" aria-hidden="true">รูปภาพ</span>
-                    <input type="file"  name="image" src="{{Auth::user()->image}}" required><br><br>--}}
 
-                    <span class="glyphicon glyphicon-user" aria-hidden="true">ชื่อติดต่อ</span>
-                    <input class="form-control" type="text" size="25" name="name" value="{{Auth::user()->name}}"
-                           required><br>
 
-                    <span class=" glyphicon glyphicon-home" aria-hidden="true">ที่อยู่</span>
-                    <input class="form-control" type="text" size="25" name="addres" value="{{Auth::user()->addres}}"
-                           required><br>
+                <form method="get" action='reviewC'>
+                    <div class="col-lg-12">
+                        <input type="radio" name="like" value="1"> <img src="public/assets/img/portfolio/like.jpg"  width="100" height="90"alt="">&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="like" value="2"> <img src="public/assets/img/portfolio/unlike.jpg"  width="100" height="90"alt=""><br>
 
-                    <span class=" glyphicon glyphicon-globe" aria-hidden="true">สามารถรติดต่อได้ที่</span>
-                    <input class="form-control" type="url" size="25" name="website" value="{{Auth::user()->website}}"
-                           required><br>
+                        </div><br>
+                    <div class="col-lg-12">
+                    <textarea  class="form-control" rows="3" name="detail"></textarea>
+                        </div>
+                    <div class="col-lg-12">
+                    <br><button class="btn btn-success">บันทึก</button>
+                    <button type="reset" class="btn btn-default">ล้างข้อมูล</button>
+                        </div>
+                    </form>
 
-                    <span class=" glyphicon glyphicon-envelope" aria-hidden="true">อีเมล์</span>
-                    <input class="form-control" type="email" size="30" name="email" style="background: #C0F9BD"
-                           value="{{Auth::user()->email}} " readonly><br>
 
-                    <span class=" glyphicon glyphicon-phone" aria-hidden="true">เบอร์โทรศัพท์</span>
-                    <input class="form-control" type="tel" size="25" name="phonenumber"
-                           value="{{Auth::user()->phonenumber}}"
-                           required><br>
 
-                    <span class=" glyphicon glyphicon-camera" aria-hidden="true"> ราคา</span><br/>
 
-                    <div class="form-control"> ครึ่งวัน : <input type="number" min="0" name="halfprice" size="7"
-                                                                 value="{{Auth::user()->fullprice}}"/>
-                        เต็มวัน : <input type="number" name="fullprice" min="0" size="7"
-                                         value="{{Auth::user()->halfprice}}"/></div>
-                    <br/><br/>
-
-                    <button type="submit" class="btn btn-info " aria-label="Left Align">
-                    <span class="glyphicon glyphicon-edit glyphicon-align-center"
-                          aria-hidden="true">บันทึกการแก้ไข</span>
-                    </button>
-                </form>
             </div>
-
-
-
-        @endif
-
-
+                </center>
+        </div>
     </div>
 
 </section>
@@ -143,8 +124,7 @@
             <div class="row">
                 <div class="footer-col col-md-4">
                     <h3>Location</h3>
-
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <p>University Of Phayao</p>
                 </div>
                 <div class="footer-col col-md-4">
                     <h3>Around the Web</h3>
@@ -167,10 +147,8 @@
                     </ul>
                 </div>
                 <div class="footer-col col-md-4">
-                    <h3>About Freelancer</h3>
-
-                    <p>Freelance is a free to use, open source Bootstrap theme created by <a
-                                href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                    <h3>About The Website</h3>
+                    <p>Use for fine Photoghraper. My fanpage<a href="https://www.facebook.com/photographerMatching/?ref=hl">PhotographerMatching Community</a>.</p>
                 </div>
             </div>
         </div>
@@ -210,6 +188,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="assets/js/freelancer.js"></script>
+
+<script src="assets/nou/nouislider.min.js"></script>
 
 </body>
 

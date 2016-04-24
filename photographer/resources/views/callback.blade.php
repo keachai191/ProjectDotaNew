@@ -50,7 +50,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://se.ict.up.ac.th/photographerMatching">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
+            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="500" height="100"></a>
 
             <!--<a class="navbar-brand" href="#page-top">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>-->
 
@@ -74,65 +74,50 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
+<br/><br/><br/>
 
 
-<!-- Contact Section --> <!--facebook -->
-<section id="contact">
-    <div class="container">
-        @if(Auth::check())
-            <div class="col-md-6 col-md-offset-3">
-                <form method="post" action="update/{{Auth::user()->id}}">
-                    <?php echo csrf_field(); ?>
-
-                    <input type="hidden" name="_method" value="PATCH"/>
-
-                    <h3> แก้ไขข้อมูลช่างภาพ</h3> <br>
-
-                    {{--<span class="col-md-2 glyphicon glyphicon-user" aria-hidden="true">รูปภาพ</span>
-                    <input type="file"  name="image" src="{{Auth::user()->image}}" required><br><br>--}}
-
-                    <span class="glyphicon glyphicon-user" aria-hidden="true">ชื่อติดต่อ</span>
-                    <input class="form-control" type="text" size="25" name="name" value="{{Auth::user()->name}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-home" aria-hidden="true">ที่อยู่</span>
-                    <input class="form-control" type="text" size="25" name="addres" value="{{Auth::user()->addres}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-globe" aria-hidden="true">สามารถรติดต่อได้ที่</span>
-                    <input class="form-control" type="url" size="25" name="website" value="{{Auth::user()->website}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-envelope" aria-hidden="true">อีเมล์</span>
-                    <input class="form-control" type="email" size="30" name="email" style="background: #C0F9BD"
-                           value="{{Auth::user()->email}} " readonly><br>
-
-                    <span class=" glyphicon glyphicon-phone" aria-hidden="true">เบอร์โทรศัพท์</span>
-                    <input class="form-control" type="tel" size="25" name="phonenumber"
-                           value="{{Auth::user()->phonenumber}}"
-                           required><br>
-
-                    <span class=" glyphicon glyphicon-camera" aria-hidden="true"> ราคา</span><br/>
-
-                    <div class="form-control"> ครึ่งวัน : <input type="number" min="0" name="halfprice" size="7"
-                                                                 value="{{Auth::user()->fullprice}}"/>
-                        เต็มวัน : <input type="number" name="fullprice" min="0" size="7"
-                                         value="{{Auth::user()->halfprice}}"/></div>
-                    <br/><br/>
-
-                    <button type="submit" class="btn btn-info " aria-label="Left Align">
-                    <span class="glyphicon glyphicon-edit glyphicon-align-center"
-                          aria-hidden="true">บันทึกการแก้ไข</span>
-                    </button>
-                </form>
-            </div>
+<section>
 
 
+    <center>
+        <h3>แบบคำขอร้องจ้างงานช่างภาพคุณ {{session()->get('usersid')}}</h3>
+        <h4>วันที่ยื่นคำขอร้อง <?php echo date("d-m-Y");?> </h4>
+    </center>
 
-        @endif
+    <form action="RequestStore" method="post" enctype="multipart/form-data">
+        <center>
+            {!! csrf_field() !!}
+            @foreach($datas as $data)
+                <input type="hidden"  name="facebook_id" value="{{$data->id}}">
+                <input type="hidden"  name="checkreques" value="1">
+                <input type="hidden"  name="checkview" value="1">
+                <input type="hidden"  name="title" value={{$data->name}}>
+                <input type="hidden"  name="name_facebook" value="{{$data->name}}">
 
 
-    </div>
+                <img src="{{$data->avatar}}">
+
+                <h4>คุณ {{$data->name}}</h4><br/>
+                วันที่ต้องการจ้างงาน :<input type="date" min="<?php echo date("Y-m-d");?>" name="start" value=""
+                                             required>
+                ไปจนถึงวันที่ <input type="date" min="<?php echo date("Y-m-d");?>" name="end" value="" required><br/>
+
+                <label class="checkbox-inline"><input name="morning" type="checkbox" value="ช่วงเช้า"
+                                                      checked>ช่วงเช้า</label>
+                <label class="checkbox-inline"><input name="afternoon" type="checkbox" value="ช่วงบ่าย">ช่วงบ่าย</label>
+                <label class="checkbox-inline"><input name="evening" type="checkbox"
+                                                      value="ช่วงเย็น">ช่วงเย็น</label><br/>
+
+                รายละเอียด :<textarea name="detail_request" rows="" cols="60" required></textarea><br/><br>
+
+                <input type="submit">ส่งคำขอร้อง</input>
+
+            @endforeach
+        </center>
+    </form>
+
+    <br/>
 
 </section>
 

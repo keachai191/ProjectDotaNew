@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'/>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Freelancer - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS  -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/freelancer.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +19,15 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
+    <!-- ปุ่มวงกลมมม Css-->
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
+    <!-- nav nav-tabs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- Calendar -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href='assets/css/fullcalendar.css' rel='stylesheet'/>
     <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print'/>
@@ -25,6 +35,7 @@
     <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
     <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
     <script src='assets/js/fullcalendar.js'></script>
+
 
 </head>
 
@@ -51,10 +62,25 @@
 
         @if(Auth::check())
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="home"><span class="glyphicon glyphicon-user"></span>คุณ {{Auth::user()->name}}</a></li>
-                <li><a href="auth/logout"><span class="glyphicon glyphicon-log-in"></span> ออกจากระบบ </a></li>
-            </ul>
+
+            <div align="right">
+                <div class="btn-group" role="group">
+
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/img/portfolio/{{Auth::user()->image}}" width="30" height="30">
+                        ช่างภาพ {{Auth::user()->name}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/home">HOME</a></li>
+                        @if(Auth::user()->status == 'admin')
+                            <li><a href="admin">สำหรับผู้ดูแลระบบ</a></li>
+                        @endif
+                        <li><a href="auth/logout">ออกจากระบบ</a></li>
+                    </ul>
+                </div>
+            </div>
 
             @endif
 
@@ -111,15 +137,6 @@
                         <br>
                         <input type="checkbox" name="evening"
                                value="ช่วงเย็น" <?php if ($calendar->evening != null) echo "checked"; ?> > ช่วงเย็น <br>
-                        {{--@elseif($calendar->afternoon != null)--}}
-                        {{--<input type="checkbox" name="afternoon" value="ช่วงเช้า"> ช่วงเช้า <br>--}}
-                        {{--<input type="checkbox" name="afternoon" value="ช่วงบ่าย" checked> ช่วงบ่าย <br>--}}
-                        {{--<input type="checkbox" name="afternoon" value="ช่วงเย็น"> ช่วงเย็น <br>--}}
-                        {{--@elseif($calendar->evening != null)--}}
-                        {{--<input type="checkbox" name="evening" value="ช่วงเช้า"> ช่วงเช้า <br>--}}
-                        {{--<input type="checkbox" name="evening" value="ช่วงบ่าย"> ช่วงบ่าย <br>--}}
-                        {{--<input type="checkbox" name="evening" value="ช่วงเย็น" checked> ช่วงเย็น <br>--}}
-
 
                     </td>
 

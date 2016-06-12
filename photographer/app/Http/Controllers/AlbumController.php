@@ -70,6 +70,7 @@ class AlbumController extends Controller
 
         return view('album')->withAlbums($albums);
 
+
     }
 
     /**

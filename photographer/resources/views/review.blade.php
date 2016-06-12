@@ -94,6 +94,9 @@
 
                 <form method="get" action='reviewC'>
                     <div class="col-lg-12">
+
+
+                        <input type="hidden"  name="name_facebook" value="{{session()->get('FacebookName')}}">
                         <input type="radio" name="like" value="1"> <img src="public/assets/img/portfolio/like.jpg"  width="100" height="90"alt="">&nbsp;&nbsp;&nbsp;
                         <input type="radio" name="like" value="2"> <img src="public/assets/img/portfolio/unlike.jpg"  width="100" height="90"alt=""><br>
 

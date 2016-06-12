@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>Project DOTA</title>
 
     <!-- Bootstrap Core CSS  -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -37,11 +37,11 @@
         $(document).ready(function () {
 
             $('#calendar').fullCalendar({
-                defaultDate: '2016-04-12',
+                defaultDate: '2016-05-12',
 
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
-                events: 'CalendarShowprofile',
+                events: 'http://localhost:8000/CalendarShowprofile',
                 eventColor: '#008080'
 
             });
@@ -50,6 +50,7 @@
 
     </script>
     <style>
+
 
         #calendar {
             max-width: 600px;
@@ -118,7 +119,7 @@
             <!--<a class="navbar-brand" href="#page-top">����ͻ���पѹ�Ѵ�Ҫ�ҧ�Ҿ</a>-->
 
         </div>
-        <
+
 
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -157,16 +158,25 @@
 
         <ul class="nav nav-pills nav-justified">
             @foreach($profiles as $profile)
-                <center><h3> ส่งคำขอร้องถึงช่างภาพ {{session()->get('usersid')}}</h3>
-                    <h3><a href="facebook" class="glyphicon glyphicon-send btn btn-warning">
-                            LoginFacebook</a></h3></center>
+                <center><h3> ช่างภาพ {{$profile->name}}</h3></center><br/>
 
+
+                <center><a type="button" class="btn btn-info btn-xs" style="color: #FFFFFF" href="#"
+                onClick="window.open('sendreview{{$profile->name}}',''); return false;"
+                title="Code PHP Popup"><span class="glyphicon glyphicon-pencil"
+                                             aria-hidden="true"></span>ประเมิณ</a></center><br>
             @endforeach
+
+
+
+
             <li class="active"><a data-toggle="tab" href="#calendars"><h4>ตารางเวลาว่าง</h4></a>
             </li>
             <li><a data-toggle="tab" href="#profile"><h4>ข้อมูลส่วนตัว</h4></a>
             </li>
             <li><a data-toggle="tab" href="#album"><h4>อัลบั้มช่างภาพ</h4></a>
+            </li>
+            <li><a data-toggle="tab" href="#comment"><h4>ประเมิณช่างภาพ</h4></a>
             </li>
 
 
@@ -283,9 +293,67 @@
                                 </table>
                     </span>
                 </div>
-
-
             </div>
+
+            <!-- ##############################  Comment ... #######################################################-->
+
+            <div class="tab-pane fade" id="comment">
+
+                <div id="input">ผลการประเมิณ</div>
+                <br>
+
+                <div id="stylealbum">
+                    <span id="optinforms-form5-name-field" name="FNAME"
+                          style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#002D31">
+
+
+                                <table class="col-md-12 table">
+                                    <tr>
+                                        <th ><h4> ชื่อผู้ประเมิณ</h4></th>
+                                        <th ><h4> รายละเอียด</h4></th>
+                                        <th ><h4> สถานะ</h4></th>
+                                        <th ><h4> เวลา</h4></th>
+                                    </tr>
+
+
+                                    @foreach($comment as $comment )
+                                        <tr>
+
+                                                {!! csrf_field() !!}
+
+                                                <td>
+                                                    <input class="form-control " type="text" name="type_al"
+                                                           value="{{$comment->name_facebook}}"
+                                                           style="background: #98EFFC"
+                                                           readonly/>
+
+                                                </td>
+
+                                                <td>
+                                                    <input class="form-control " type="text" name="type_al"
+                                                           value="{{$comment->detail}}"
+                                                           style="background: #98EFFC"
+                                                           readonly/>
+                                                </td>
+                                            <td>
+                                                @if( $comment->like == 1 )<img src="assets/img/portfolio/like.jpg"  width="50" height="50"alt="">
+                                                @else <img src="assets/img/portfolio/unlike.jpg"  width="50" height="50"alt="">
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <input class="form-control " type="text" name="type_al"
+                                                       value="{{$comment->created_at}}"
+                                                       style="background: #98EFFC"
+                                                       readonly/>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                </table>
+                    </span>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>

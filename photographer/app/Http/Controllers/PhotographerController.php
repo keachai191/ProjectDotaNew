@@ -29,12 +29,41 @@ class PhotographerController extends Controller
         $requests = DB::table('users')
             ->join('requests', 'users.id', '=', 'requests.user_id')
             ->where('users.id', '=', $id)
-            ->where('requests.checkview','=','1')
+            ->where('requests.checkview', '=', '1')
             ->get();
-
 
         return view('photographer')->withAlbums($albums)
             ->withRequests($requests);
+
+    }
+
+    public function messagebox()
+    {
+
+        $id = Auth::user()->id;
+
+        $requests = DB::table('users')
+            ->join('requests', 'users.id', '=', 'requests.user_id')
+            ->where('users.id', '=', $id)
+            ->where('requests.checkview', '=', '1')
+            ->get();
+
+        $accepts = DB::table('users')
+            ->join('requests', 'users.id', '=', 'requests.user_id')
+            ->where('users.id', '=', $id)
+            ->where('requests.checkreques', '=', '3')
+            ->get();
+
+        $rejects = DB::table('users')
+            ->join('requests', 'users.id', '=', 'requests.user_id')
+            ->where('users.id', '=', $id)
+            ->where('requests.checkreques', '=', '0')
+            ->get();
+
+
+        return view('messagebox')->withRequests($requests)
+            ->withAccepts($accepts)
+            ->withRejects($rejects);
     }
 
     /**

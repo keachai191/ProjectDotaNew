@@ -2,149 +2,259 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>photographer</title>
 
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Calendar -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href='assets/css/fullcalendar.css' rel='stylesheet'/>
+    <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print'/>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+    <script src='assets/js/fullcalendar.js'></script>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
-    <!-- Custom CSS -->
-    <link href="assets/css/freelancer.css" rel="stylesheet">
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar
+
+            ({
+                defaultDate: '2016-05-12',
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: 'http://localhost:8000/CalendarsendHome',
+                eventColor: '#008080'
+
+            });
+
+        });
+
+    </script>
+    <style>
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        section.theme {
+            margin-top: -500px;
+            margin-bottom: -100px;
+            padding-top: 0px;
+            height: 100%;
+            min-height: 100%;
+            background: url("assets/img/background/bg.jpg") center center;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+        }
+
+        section.box {
+            padding-top: 20px;
+            font-size: 5rem;
+            color: #080808;
+        }
+
+        section.phofile {
+            padding: 20px;
+            padding-bottom: 150px;
+            background: #EEEEEE;
+        }
 
 
-    <!-- Custom Fonts -->
-    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css">
+
+        #btnedit {
+            background-color: #c7ddef;
+
+        }
+
+        #calendar {
+            max-width: 700px;
+            margin: 0 auto;
+
+        }
+        .navbar-default.transparent {
+            border-width: 0px;
+            border-color: black;
+            -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+            background-color: rgba(0, 0, 0, 0.0);
+            background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop(0%, rgba(0, 0, 0, 0.00)), color-stop(100%, rgba(0, 0, 0, 0.00)));
+            background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+        }
 
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    </style>
 
 </head>
+<body class="off-canvas-nav-left" style="padding-top:30px;">
 
-<body id="page-top" class="index">
+<!-- Static navbar -->
+<nav class="navbar navbar-default transparent navbar-fixed-top">
 
-<!-- Navigation -->
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navtop">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
-
-            <!--<a class="navbar-brand" href="#page-top">����ͻ���पѹ�Ѵ�Ҫ�ҧ�Ҿ</a>-->
-
+            <br>
+            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="400" height="70"></a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <!--<li class="page-scroll">
-                    <a href="#portfolio">�Ѵ�ѹ�Ѻ��ҧ�Ҿ</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="#about">��ҧ�Ҿ��к�</a>
-                </li>-->
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <br>
+            <li> @if(Auth::check())
+
+
+                    <div align="right">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/img/portfolio/{{Auth::user()->image}}" width="30" height="30">
+                                ช่างภาพ {{Auth::user()->name}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @if(Auth::user()->status == 'admin')
+                                    <li><a href="admin">สำหรับผู้ดูแลระบบ</a></li>
+                                @endif
+                                <li><a href="home">Home</a></li>
+                                <li><a href="auth/logout">ออกจากระบบ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                @endif</li>
+
+            <li><a href="#"></a></li>
+
+
+        </ul>
+
+
+    </div>
+    <!-- /.navbar-collapse -->
+
     <!-- /.container-fluid -->
 </nav>
 
-
 <!-- Contact Section --> <!--facebook -->
-<section id="contact">
+<section class="theme"></section>
+<section class="phofile">
     <div class="container"><br/><br/>
 
-        <form action="home" method="get" enctype="multipart/form-data">
+        <a class="w3-btn-floating-large  w3-red"
+           data-toggle="modal" data-target="#myModal">
+            + <span class="badge"></span>
+        </a>
 
-            {!! csrf_field() !!}
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
 
-            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-            <button class="btn btn-warning" type="submit">ย้อนกลับ</button>
-        </form>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> เพิ่มอัลบัม!! </h4>
+                    </div>
+                    <div class="modal-body">
 
+                        <center>
+                            <h4>ประเภทของอัลบัม</h4>
+
+                            <form action="Album" method="post" enctype="multipart/form-data">
+                                {!! csrf_field() !!}
+
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+
+                                <label class="radio-inline">
+                                    <input type="radio" name="type_al" id="inlineRadio1" value="รับปริญญา" checked>
+                                    รับปริญญา
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="type_al" id="inlineRadio2" value="ฟรีเวดดิ้ง"> ฟรีเวดดิ้ง
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="type_al" id="inlineRadio3" value="งานแต่ง"> งานแต่ง
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="type_al" id="inlineRadio3" value="อีเวนต์"> อีเวนต์
+                                </label><br/>
+
+                                <h4>ที่อยู่อัลบัม</h4>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <input class="form-control" type="url"
+                                               size="30" name="url_al"/></div>
+                                </div>
+
+                                <h4>รายละเอียดอัลบั้ม</h4>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                            <textarea class="form-control" type="text" value="" name="detail_al" rows="5"
+                                      cols="60">  </textarea>
+                                    </div>
+                                    <br/><br/><br/><br/><br/><br/><br/><br/>
+
+
+                                    <!--<h4>ราคาจ้างงาน</h4>
+                                    <span>ครึ่งวัน</span>
+                                    <input type="name" size="10" name="halfprice" value="" required>
+                                    <span>เต็มวัน</span>
+                                    <input type="name" size="10" name="fullprice" value="" required><br><br>-->
+
+
+                                    <center>
+                                        <button class="btn btn-success" type="submit">เพิ่มอัลบัม</button>
+                                    </center>
+
+                                </div>
+                                &nbsp; &nbsp; &nbsp;
+                            </form>
+                        </center>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <center><h2>แก้ไขอัลบั้มช่างภาพ</h2></center>
         @if(Auth::check())
-            <center><h1>เพิ่มอัลบัม</h1><br/>
-
-                <h4>ประเภทของอัลบัม</h4>
-
-                <form action="Album" method="post" enctype="multipart/form-data">
-                    {!! csrf_field() !!}
-
-                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-
-                    <label class="radio-inline">
-                        <input type="radio" name="type_al" id="inlineRadio1" value="รับปริญญา" checked> รับปริญญา
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="type_al" id="inlineRadio2" value="ฟรีเวดดิ้ง"> ฟรีเวดดิ้ง
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="type_al" id="inlineRadio3" value="งานแต่ง"> งานแต่ง
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="type_al" id="inlineRadio3" value="อีเวนต์"> อีเวนต์
-                    </label><br/>
-
-                    <h4>ที่อยู่อัลบัม</h4>
-                    <input type="url" size="30" name="url_al"/><br/><br>
-
-                    <h4>รายละเอียดอัลบั้ม</h4>
-                    <textarea type="text" value="" name="detail_al" rows="5" cols="60">  </textarea><br/>
-
-
-
-                    <!--<h4>ราคาจ้างงาน</h4>
-                    <span>ครึ่งวัน</span>
-                    <input type="name" size="10" name="halfprice" value="" required>
-                    <span>เต็มวัน</span>
-                    <input type="name" size="10" name="fullprice" value="" required><br><br>-->
-
-
-                    <button class="btn btn-success" type="submit">เพิ่มอัลบัม</button>
-                    &nbsp; &nbsp; &nbsp;
-
-
-                    <br/><br/><br/>
-
-                </form>
-            </center>
-
-
-
 
             <table class="col-md-12 table">
                 <tr>
-                    <th class="col-md-3"><h4>ประเภท</h4></th>
-                    <th class="col-md-3"><h4>ที่อยู่อัลบัม</h4></th>
-                    <th class="col-md-3"><h4>รายละเอียดอัลบั้ม</h4></th>
-                    <th class="col-md-1"><h4>แก้ไข</h4></th>
-                    <th class="col-md-1"><h4>ลบ</h4></th>
+                    <th class="col-md-3"><h4><img align="left" src="assets/img/icon/album.png" width="40"
+                                                  height="40"
+                                                  alt=""><br/> ประเภทอัลบั้ม</h4></th>
+                    <th class="col-md-3"><h4><img align="left" src="assets/img/icon/picture.png" width="40"
+                                                  height="40"
+                                                  alt=""><br/> ที่อยู่อัลบั้ม</h4></th>
+                    <th class="col-md-3"><h4><img align="left" src="assets/img/icon/photo-camera.png"
+                                                  width="40"
+                                                  height="40"
+                                                  alt=""><br/> รายละเอียด</h4></th>
+                    <th class="col-md-1"><h4><br> แก้ไข</h4></th>
+                    <th class="col-md-1"><h4><br> ลบ</h4></th>
                 </tr>
 
                 @foreach($albums as $album)
@@ -153,10 +263,8 @@
                             {!! csrf_field() !!}
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <td>
-                                <input type="text" name="type_al" value="{{$album->type_al}}"
-                                       style="background: #98EFFC"
-                                       readonly/>
-                                <select name="type_al">
+
+                                <select class="form-control" style="background: #98EFFC" name="type_al">
                                     <option> {{$album->type_al}}</option>
                                     <option>ฟรีเวดดิ้ง</option>
                                     <option>งานแต่ง</option>
@@ -165,17 +273,23 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="url_al" size="30" value="{{$album->url_al}}"/>
+                                <input class="form-control" style="background: #fbf9ee" type="text" name="url_al"
+                                       size="30"
+                                       value="{{$album->url_al}}" required/>
                             </td>
                             <td>
-                                <input type="text" name="detail_al" size="30" value="{{$album->detail_al}}"/>
+                                <input class="form-control" style="background: #fbf9ee" type="text" name="detail_al"
+                                       size="30"
+                                       value="{{$album->detail_al}}" required/>
                             </td>
                             <!--<td>
                                 ครึ่งวัน : <input type="text" name="halfprice" size="7" value="{{$album->halfprice}}"/>
                                 เต็มวัน : <input type="text" name="fullprice" size="7" value="{{$album->fullprice}}"/>
                             </td>-->
                             <td>
-                                <button class="btn btn-info" type="submit"> แก้ไข</button>
+                                <button class="glyphicon glyphicon-pencil btn btn-success" type="submit"
+                                        onclick="return confirmEdit();"> แก้ไข
+                                </button>
                             </td>
                         </form>
 
@@ -185,95 +299,45 @@
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
-                                <button class="btn btn-danger" type="submit"> ลบ</button>
+                                <button class="glyphicon glyphicon-remove btn btn-danger" type="submit"
+                                        onclick="return confirmDel();"> ลบ
+                                </button>
 
                             </form>
                         </td>
 
 
+                        @endforeach
+                        <script>
+                            function confirmDel() {
 
-                @endforeach
+                                var x = confirm
+                                (" <?php echo  "คุณต้องการลบAlbum  ใช่หรือไม่! " ?> ")
+                                if (x)
+                                    return true;
+                                else {
+                                    return false;
+                                }
+                            }
+
+                        </script>
+                        <script>
+                            function confirmEdit() {
+
+                                var x = confirm
+                                (" <?php echo  "คุณต้องแก้ไขAlbum ใช่หรือไม่! " ?> ")
+                                if (x)
+                                    return true;
+                                else {
+                                    return false;
+                                }
+                            }
+
+                        </script>
 
             </table>
         @endif
     </div>
 </section>
-
-<!-- Footer -->
-<footer class="text-center">
-    <div class="footer-above">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col col-md-4">
-                    <h3>Location</h3>
-
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                </div>
-                <div class="footer-col col-md-4">
-                    <h3>Around the Web</h3>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-col col-md-4">
-                    <h3>About Freelancer</h3>
-
-                    <p>Freelance is a free to use, open source Bootstrap theme created by <a
-                                href="http://startbootstrap.com">Start Bootstrap</a>.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-below">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    Copyright &copy; Your Website 2014
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-<div class="scroll-top page-scroll visible-xs visible-sm">
-    <a class="btn btn-primary" href="#page-top">
-        <i class="fa fa-chevron-up"></i>
-    </a>
-</div>
-
-<!-- jQuery -->
-<script src="assets/js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="assets/js/bootstrap.min.js"></script>
-
-<!-- Plugin JavaScript -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="assets/js/classie.js"></script>
-<script src="assets/js/cbpAnimatedHeader.js"></script>
-
-<!-- Contact Form JavaScript -->
-<script src="assets/js/jqBootstrapValidation.js"></script>
-<script src="assets/js/contact_me.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="assets/js/freelancer.js"></script>
-
 </body>
-
 </html>

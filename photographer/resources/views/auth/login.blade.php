@@ -31,6 +31,77 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar
+
+            ({
+                defaultDate: '2016-05-12',
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: 'http://localhost:8000/CalendarsendHome',
+                eventColor: '#008080'
+
+            });
+
+        });
+
+    </script>
+    <style>
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        section.theme {
+            margin-top: -500px;
+            margin-bottom: -100px;
+            padding-top: 0px;
+            height: 100%;
+            min-height: 100%;
+            background: url("assets/img/background/bg.jpg") center center;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+        }
+
+        section.box {
+            padding-top: 20px;
+            font-size: 5rem;
+            color: #080808;
+        }
+
+        section.phofile {
+            padding: 20px;
+            padding-bottom: 150px;
+            background: #EEEEEE;
+        }
+
+
+
+        #btnedit {
+            background-color: #c7ddef;
+
+        }
+
+        #calendar {
+            max-width: 700px;
+            margin: 0 auto;
+
+        }
+        .navbar-default.transparent {
+            border-width: 0px;
+            border-color: black;
+            -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+            background-color: rgba(0, 0, 0, 0.0);
+            background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop(0%, rgba(0, 0, 0, 0.00)), color-stop(100%, rgba(0, 0, 0, 0.00)));
+            background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+        }
+
+
+    </style>
 
 
 </head>
@@ -39,166 +110,137 @@
 
 <!-- Navigation -->
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+<nav class="navbar navbar-default transparent navbar-fixed-top">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navtop">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://se.ict.up.ac.th/photographerMatching">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>
-
-            <!--<a class="navbar-brand" href="#page-top">เว็บแอปพลิเคชันจัดหาช่างภาพ</a>-->
-
+            <br>
+            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="400" height="70"></a>
         </div>
-        @if(Auth::check())
-
-            <a class="col-md-offset-4" href="home">{{Auth::user()->name}} : กำลังใช้งาน</a><br/>
-            <a class="col-md-offset-4" href="auth/logout">ออกจากระบบ</a>
-
-
-            @endif
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <!--<li class="page-scroll">
-                    <a href="#portfolio">จัดอันดับช่างภาพ</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="#about">ช่างภาพในระบบ</a>
-                </li>-->
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <br>
+            <li> @if(Auth::check())
+
+
+                    <div align="right">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/img/portfolio/{{Auth::user()->image}}" width="30" height="30">
+                                ช่างภาพ {{Auth::user()->name}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @if(Auth::user()->status == 'admin')
+                                    <li><a href="admin">สำหรับผู้ดูแลระบบ</a></li>
+                                @endif
+                                <li><a href="home">Home</a></li>
+                                <li><a href="auth/logout">ออกจากระบบ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                @endif</li>
+
+            <li><a href="#"></a></li>
+
+
+        </ul>
+
+
+    </div>
+    <!-- /.navbar-collapse -->
+
     <!-- /.container-fluid -->
 </nav>
 
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br/>
 
-<div class="container">
-    <div class="col-md-6 col-md-offset-3">
-        {!! Form::open(["url" => "/auth/login"]) !!}
-        <table class="table">
-            @if(count($errors)>0)
+<section class="theme">
+</section>
+<section class="phofile">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            {!! Form::open(["url" => "/auth/login"]) !!}
+            <table class="table">
+                @if(count($errors)>0)
+                    <tr>
+                        <td colspan="2"></td>
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <il> {{$error}} </il>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </tr>
+                @endif
+
+
                 <tr>
-                    <td colspan="2"></td>
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <il> {{$error}} </il>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <td colspan="2">
+                        <h1 class="well text-center">เข้าสู่ระบบ</h1>
+                    </td>
                 </tr>
-            @endif
+                <tr>
+                    <td>อีเมล์ของคุณ:</td>
+                    <td>
+                        {!! Form::email("email") !!}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        รหัสผ่าน :
+                    </td>
+                    <td>
+                        {!! Form::password("password") !!}
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <!-- <td>
+                         <center><a href="/password/email">Forgot your password ?! </a></center><br/>
+                     </td>-->
+                    <td colspan="2">
+                        <center>{!! Form::submit("เข้าสู่ระบบ") !!}</center>
+                        <br/>
+                        <a href="register"  class="btn btn-success">สมัครสมาชิก</a>
+                    </td>
+                </tr>
+                {{--<tr>
+                    <td colspan="2" class="text-center">
+                         <a href="/auth/facebook">
+                    <div align="center"><img src="assets/img/portfolio/login_Facebook.jpg" width="200" height="50">
+                        <img></div>
+                </a>
+                    </td>
+                </tr>--}}
 
 
-            <tr>
-                <td colspan="2">
-                    <h1 class="well text-center">เข้าสู่ระบบ</h1>
-                </td>
-            </tr>
-            <tr>
-                <td>อีเมล์ของคุณ:</td>
-                <td>
-                    {!! Form::email("email") !!}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    รหัสผ่าน :
-                </td>
-                <td>
-                    {!! Form::password("password") !!}
-                </td>
-            </tr>
-            <tr>
-                <td>จดจำรหัสผ่าน ?</td>
-                <td>{!! Form::checkbox("remember") !!}</td>
-            </tr>
-            <tr>
-
-               <!-- <td>
-                    <center><a href="/password/email">Forgot your password ?! </a></center><br/>
-                </td>-->
-                <td colspan="2">
-                    <center>{!! Form::submit("เข้าสู่ระบบ") !!}</center> <br/>
-                    <a href="register">สมัครสมาชิก</a>
-                </td>
-            </tr>
-            <!--<tr>
-                <td colspan="2" class="text-center">
-                    <a href="/auth/facebook">facebook</a>
-                </td>
-            </tr>-->
-
-        </table>
-        {!! Form::Close() !!}
-    </div>
-</div>
-
-
-<br><br><br><br><br><br><br><br><br><br>
-
-
-<!-- Footer -->
-<footer class="text-center">
-    <div class="footer-above">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col col-md-4">
-                    <h3>Location</h3>
-
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                </div>
-                <div class="footer-col col-md-4">
-                    <h3>Around the Web</h3>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-col col-md-4">
-                    <h3>About Freelancer</h3>
-
-                    <p>Freelance is a free to use, open source Bootstrap theme created by <a
-                                href="http://startbootstrap.com">Start Bootstrap</a>.</p>
-                </div>
-            </div>
+            </table>
+            {!! Form::Close() !!}
         </div>
+
     </div>
-    <div class="footer-below">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    Copyright &copy; Your Website 2014
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+</section>
+
+
+
+
 
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 <div class="scroll-top page-scroll visible-xs visible-sm">

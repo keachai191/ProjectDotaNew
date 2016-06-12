@@ -19,14 +19,80 @@ class CalendarController extends Controller
     {
         $id = Auth::user()->id;
 
-        $calendars = Calendar::select("title", "start", "end", "url", "morning", "afternoon", "evening", "id")
+        $calendars = DB::table('evenement')
             ->where('user_id', '=', $id)
+            ->select("title", "start", "end", "url", "morning", "afternoon", "evening", "id")
             ->get();
-
         foreach ($calendars as $calendar) {
             $calendar->title = $calendar->title . "\n\n" . $calendar->morning . "\n " . $calendar->afternoon . "\n" . $calendar->evening;
         }
-        return $calendars;
+
+        $calens = DB::table('requests')
+            ->where('user_id', '=', $id)
+            ->where('requests.checkview', '=', '0')
+            ->select("title", "start", "end", "morning", "afternoon", "evening")
+            ->get();
+        foreach ($calens as $calen) {
+            $calen->title = $calen->title . "\n\n" . $calen->morning . "\n " . $calen->afternoon . "\n" . $calen->evening;
+        }
+
+        return $calens + $calendars;
+    }
+
+
+    public function sendHome()
+    {
+        $id = Auth::user()->id;
+
+        $calendars = DB::table('evenement')
+            ->where('user_id', '=', $id)
+            ->select("title", "start", "end", "morning", "afternoon", "evening")
+            ->get();
+        foreach ($calendars as $calendar) {
+            $calendar->title = $calendar->title . "\n\n\n";
+        }
+
+        $calens = DB::table('requests')
+            ->where('user_id', '=', $id)
+            ->where('requests.checkview', '=', '0')
+            ->select("title", "start", "end", "morning", "afternoon", "evening")
+            ->get();
+        foreach ($calens as $calen) {
+            $calen->title = $calen->title . "\n\n\n";
+        }
+
+        return $calens + $calendars;
+    }
+
+    public function Showprofile()
+    {
+
+        $ID = session()->get('UserId');
+
+        $calendars = DB::table('evenement')
+            ->where('user_id', '=', $ID[0]->id)
+            ->select("title", "start", "end", "morning", "afternoon", "evening")
+            ->get();
+
+        foreach ($calendars as $calendar) {
+            $calendar->title = $calendar->title . "\n\n\n";
+        }
+
+
+        foreach ($calendars as $calendar) {
+            $calendar->title = $calendar->title . "\n\n\n";
+        }
+
+        $calens = DB::table('requests')
+            ->where('user_id', '=', $ID[0]->id)
+            ->where('requests.checkview', '=', '0')
+            ->select("title", "start", "end", "morning", "afternoon", "evening")
+            ->get();
+        foreach ($calens as $calen) {
+            $calen->title = $calen->title . "\n\n\n";
+        }
+
+        return $calens + $calendars;
     }
 
 
@@ -54,6 +120,7 @@ class CalendarController extends Controller
         $calendar->evening = $evening;
 
         $calendar->save();
+
 
         $Lastid = $calendar->id;
         $calendar = Calendar::find($Lastid);

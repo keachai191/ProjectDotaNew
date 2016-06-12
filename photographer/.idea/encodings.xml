@@ -3,20 +3,31 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/AlbumController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/CalendarController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/CommentController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/FacebookController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/routes.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/Photographer.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/addalbum.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/Test.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/auth/password.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/auth/register.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/auth/reset.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/calender.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/calendar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/edit.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/editcalendar.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/errors/402.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/errors/403.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/errors/404.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/facebook.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/formreques.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/formreview.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/index.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/member.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/search.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/showsearch.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/ttt.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/messagebox.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/profile.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/recordreques.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/recordreview.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/showprofile.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/test2.blade.php" charset="UTF-8" />
   </component>
 </project>

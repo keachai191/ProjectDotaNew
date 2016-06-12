@@ -13,7 +13,7 @@ class UpdateController extends Controller
     public function update($id, Request $request)
 
     {
-        $image = $request->input('image');
+
         $name = $request->input('name');
         $addres = $request->input('addres');
         $website = $request->input('website');
@@ -21,8 +21,23 @@ class UpdateController extends Controller
         $fullprice = $request->input('fullprice');
         $halfprice =$request->input('halfprice');
 
+
         $user = User::find($id);
-        $user->image = $image;
+        if($request->file('image') != ""){
+        $photo = $request->file('image');
+
+
+        $rephotoname = value(function () use ($photo, $request, $name){
+            $photoname =  $name . '.' . $photo->getClientOriginalExtension();
+            return strtolower($photoname);
+        });
+
+        $destinationpath = 'assets/img/portfolio';
+        $photo->move($destinationpath, $rephotoname);
+        $user->image = $rephotoname;}
+
+
+
         $user->name = $name;
         $user->addres =$addres;
         $user->website =$website;

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Album;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use DB;
+
 class PhotographerController extends Controller
 {
 
@@ -23,9 +23,47 @@ class PhotographerController extends Controller
         $id = Auth::user()->id;
         $albums = DB::table('users')
             ->join('albums', 'users.id', '=', 'albums.user_id')
-            ->where('users.id','=',$id)
+            ->where('users.id', '=', $id)
             ->get();
-        return view('photographer')->withAlbums($albums);
+
+        $requests = DB::table('users')
+            ->join('requests', 'users.id', '=', 'requests.user_id')
+            ->where('users.id', '=', $id)
+            ->where('requests.checkview', '=', '1')
+            ->get();
+
+        return view('photographer')->withAlbums($albums)
+            ->withRequests($requests);
+
+    }
+
+    public function messagebox()
+    {
+
+        $id = Auth::user()->id;
+
+        $requests = DB::table('users')
+            ->join('requests', 'users.id', '=', 'requests.user_id')
+            ->where('users.id', '=', $id)
+            ->where('requests.checkview', '=', '1')
+            ->get();
+
+        $accepts = DB::table('users')
+            ->join('requests', 'users.id', '=', 'requests.user_id')
+            ->where('users.id', '=', $id)
+            ->where('requests.checkreques', '=', '3')
+            ->get();
+
+        $rejects = DB::table('users')
+            ->join('requests', 'users.id', '=', 'requests.user_id')
+            ->where('users.id', '=', $id)
+            ->where('requests.checkreques', '=', '0')
+            ->get();
+
+
+        return view('messagebox')->withRequests($requests)
+            ->withAccepts($accepts)
+            ->withRejects($rejects);
     }
 
     /**

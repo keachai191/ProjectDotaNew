@@ -24,17 +24,17 @@ class UpdateController extends Controller
 
         $user = User::find($id);
         if($request->file('image') != ""){
-        $photo = $request->file('image');
+            $photo = $request->file('image');
 
 
-        $rephotoname = value(function () use ($photo, $request, $name){
-            $photoname =  $name . '.' . $photo->getClientOriginalExtension();
-            return strtolower($photoname);
-        });
+            $rephotoname = value(function () use ($photo, $request, $name){
+                $photoname =  $name . '.' . $photo->getClientOriginalExtension();
+                return strtolower($photoname);
+            });
 
-        $destinationpath = 'assets/img/portfolio';
-        $photo->move($destinationpath, $rephotoname);
-        $user->image = $rephotoname;}
+            $destinationpath = 'assets/img/portfolio';
+            $photo->move($destinationpath, $rephotoname);
+            $user->image = $rephotoname;}
 
 
 
@@ -44,6 +44,13 @@ class UpdateController extends Controller
         $user->phonenumber =$phonenumber;
         $user->fullprice = $fullprice;
         $user->halfprice = $halfprice;
+
+        if($fullprice > $halfprice) {
+            $user->save();
+        }else{
+            return back()->withErrors('Problem price');
+        }
+
 
         $user->save();
         return redirect('home');

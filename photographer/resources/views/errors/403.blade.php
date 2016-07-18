@@ -2,8 +2,19 @@
 <html>
 <head>
     <title>Be right back.</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <title>photographer</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Calendar -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <style>
         html, body {
@@ -41,6 +52,15 @@
 <div class="container">
     <div class="content">
         <div class="title">กรุณาจ้างงานช่างภาพก่อน</div>
+
+
+
+        <div class="btn btn-default btn-lg"
+             type="button" value="ปิด"
+             onclick="self.close()"><span class="glyphicon glyphicon-log-out" aria-hidden="true">   ปิด</span></div>
+
+
+
     </div>
 </div>
 </body>

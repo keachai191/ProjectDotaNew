@@ -37,6 +37,7 @@ class ProfileController extends Controller
             ->where('users.name', '=', $username)
             ->get();
 
+
         return view('Profile')->withAlbums($albums)
             ->withProfiles($profiles);
 
@@ -64,10 +65,31 @@ class ProfileController extends Controller
             ->get();
         $comment = DB::table('review')
             ->where('review.name_user', '=', $username)
+            ->orderBy('review.id', 'desc')
             ->get();
+        $like  = DB::table('review')
+            ->where('review.name_user', '=', $username)
+            ->where('review.like','=','1')
+            ->get();
+        $unlike  = DB::table('review')
+            ->where('review.name_user', '=', $username)
+            ->where('review.like','=','2')
+            ->get();
+
+
+        $admin = DB::table('users')
+        ->where('users.name', '=', $username)
+        ->select('users.status')
+        ->get();
+
+
         return view('ShowProfile')->withAlbums($albums)
             ->withProfiles($profiles)
-            ->withComment($comment);
+            ->withComment($comment)
+            ->withLike($like)
+            ->withUnlike($unlike)
+            ->withAdmin($admin);
+
 
     }
 

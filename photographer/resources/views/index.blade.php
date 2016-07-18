@@ -9,6 +9,7 @@
     <meta name="author" content="">
 
     <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
 
     <!-- Boographertstrap core CSS -->
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -111,7 +112,7 @@
                 <span class="icon-bar"></span>
             </button>
             <br>
-            <a href=""><img src="assets/img/portfolio/Logo3.png" width="400" height="70"></a>
+            <a href=""><img src="/assets/img/portfolio/Logo3.png" width="400" height="70"></a>
         </div>
     </div>
 
@@ -122,8 +123,8 @@
             <br>
             <li> @if(!session()->get('FacebookName'))
                     <a href="facebooklogin">
-                        <div><img src="assets/img/portfolio/login_Facebook.jpg" width="200" height="40">
-                            </div>
+                        <div><img src="/assets/img/portfolio/login_Facebook.jpg" width="200" height="40">
+                        </div>
                     </a>
                 @endif
 
@@ -141,6 +142,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="viewreques">ประวัติคำขอร้อง</a></li>
                                 <li><a href="viewcomment">ประวัติการประเมินช่างภาพ</a></li>
+                                <li><a href="faq">FAQ : คำตอบที่พบบ่อย</a></li>
                                 <li><a href="logoutfacebook">ออกจากระบบ</a></li>
                             </ul>
 
@@ -162,10 +164,10 @@
 
 <section id="search" class="intro2">
 
-    <center><br/><br/><br/><br/><img src="assets/img/background/banner.png " width="700" height="250"></center>
+    <center><br/><br/><br/><br/><img src="assets/img/background/banner.png " width="700" height="270"></center>
 
-    <center><a href="/search" class="button button1"><img src="assets/img/background/search.png " width="200" height="200"></a>
-        <a href="./login" class="button button2"><img src="assets/img/background/photographer.png " width="200" height="200"></a></center>
+    <center><a href="/search" class="button button1"><img src="/assets/img/background/search.png" width="170" height="170"></a>
+        &nbsp;&nbsp;&nbsp;<a href="./login" class="button button2"><img src="/assets/img/background/photographer.png" width="170" height="170"></a></center>
 </section>
 
 <!--<section id="photographer" class="photographer">

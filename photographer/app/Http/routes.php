@@ -13,6 +13,9 @@ Route::post('updatealbum', 'UpdateAlbumController@store');
 Route::resource('home', 'PhotographerController');
 Route::resource('update', 'UpdateController');
 Route::get('/messagebox', 'PhotographerController@messagebox');
+Route::get('/replycomment', 'PhotographerController@replycomment');
+Route::get('/changepassword/{id}/', 'PhotographerController@changepassword');
+Route::post('/updatepassword/{id}', 'PhotographerController@updatepassword');
 
 Route::get('/showalbum', 'ShowalbumController@index');
 Route::post('/storealbum', 'ShowalbumController@storealbum');
@@ -26,6 +29,7 @@ Route::get('/ShowProfile{username}/', 'ProfileController@showprofile');
 Route::get('/facebooklogin', 'FacebookController@facebooklogin');
 Route::get('/callback', 'FacebookController@Callback');
 Route::get('/sendreques{username}', 'FacebookController@sendreques');
+Route::get('/mutisendreques{username}', 'FacebookController@mutisendreques');
 Route::get('/sendreview{username}', 'FacebookController@sendreview');
 Route::get('/checkloginfacebook', 'FacebookController@checkloginfacebook');
 Route::get('/logoutfacebook', 'FacebookController@logoutfacebook');
@@ -36,6 +40,7 @@ Route::get('/Calendar', function () {
 });
 
 Route::get('/editcalendar{id}', 'CalendarController@editcalendar');
+Route::get('/seeinfo{id}', 'CalendarController@infocustomer');
 Route::post('/storecalendar', 'CalendarController@store');
 Route::get('/Calendarsend', 'CalendarController@send');
 Route::get('/CalendarsendHome', 'CalendarController@sendHome');
@@ -44,12 +49,15 @@ Route::post('/CalendarUpdate{calendarid}', 'CalendarController@updatecalendar');
 Route::post('/CalendarDestroy{calendarid}', 'CalendarController@destroy');
 
 
-Route::get('/Request','RequestController@index');
-Route::post('/RequestStore','RequestController@store');
-Route::post('/RequestUpdate/{requeid}/','RequestController@update');
-Route::post('/Requestdestroy/{requeid}/','RequestController@destroy');
-Route::get('/viewreques','RequestController@viewreques');
-Route::get('/viewcomment','ReviewController@viewcomment');
+Route::get('/Request', 'RequestController@index');
+Route::post('/RequestStore', 'RequestController@store');
+Route::post('/MutiRequestStore', 'mutiRequestController@mutistore');
+Route::post('/RequestUpdate/{requeid}/', 'RequestController@update');
+Route::post('/RequestDelete/{requeid}/', 'RequestController@destroy');
+Route::post('/Requestdestroy/{requeid}/', 'RequestController@destroy');
+Route::get('/viewreques', 'RequestController@viewreques');
+Route::get('/viewcomment', 'ReviewController@viewcomment');
+Route::post('/updatecomment/{id}/', 'ReviewController@updatecommnet');
 
 
 Route::get('/confirm', function () {
@@ -59,17 +67,29 @@ Route::get('/confirm', function () {
 Route::get('/formreques{username}', function () {
     return view('formreques');
 });
-Route::get('/recordreques', function () {
-    return view('recordreques');
+Route::get('/mutiformreques{username}', function () {
+    return view('mutiformreques');
 });
 
 
+Route::get('/recordreques', function () {
+    return view('recordreques');
+});
+Route::get('/inforecord', function () {
+    return view('inforecord');
+});
+
+Route::post('/inforecord/{id}/', 'RequestController@inforecord');
+
+
 Route::get('s', 'SearchController@getName');
+Route::post('mutisearch', 'mutiSearchController@getName');
+Route::get('mutisearch', 'mutiSearchController@getName');
 Route::get('ReviewC', 'ReviewController@getReview');
 Route::get('editComment{id}', 'ReviewController@editComment');
 Route::post('updateComment/{id}', 'ReviewController@updateComment');
 Route::post('destroyComment/{id}', 'ReviewController@destroyComment');
-Route::get('/formreview{username}/{userphoto}','ReviewController@getReviewCheck');
+Route::get('/formreview{username}/{userphoto}', 'ReviewController@getReviewCheck');
 
 
 Route::get('/editreview', function () {
@@ -106,6 +126,9 @@ Route::get('/', function () {
 Route::get('/search', function () {
     return view('search');
 });
+Route::get('/mutishowsearch', function () {
+    return view('mutishowsearch');
+});
 
 Route::get('/member', function () {
     return view('member');
@@ -116,6 +139,9 @@ Route::get('/login', 'Auth\AuthController@checklogin');
 
 Route::get('/register', function () {
     return view('auth.register');
+});
+Route::get('/faq', function () {
+    return view('faq');
 });
 
 get('/photographer', 'Auth\AuthController@getLogin');
@@ -134,9 +160,14 @@ post('/password/email', 'Auth\PasswordController@postEmail');
 get('/password/reset{token}', 'Auth\PasswordController@getReset');
 post('/password/reset', 'Auth\PasswordController@postReset');
 
-Route::get('/admin','AdminController@index');
-Route::post('/adminUpdate/{userid}/','AdminController@update');
 
+Route::get('/admin', 'AdminController@index');
+Route::post('/adminUpdate/{userid}/', 'AdminController@update');
+Route::post('/adminUpdateFacebook/{userid}/', 'AdminController@updateFacebook');
+Route::get('/administrator{id}/', 'AdminController@administrator');
+Route::post('/adminDestroyCalendar/{id}/', 'AdminController@destroyreques');
+Route::post('/adminDestroyAlbum/{id}/', 'AdminController@destroyalbum');
+Route::post('/adminUpdateComment/{id}/', 'AdminController@updatecomment');
 
 
 

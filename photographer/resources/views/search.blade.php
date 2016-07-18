@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Project DOTA</title>
-
+    <link rel="icon" href="assets/img/icon/favicon.ico"/>
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -35,45 +35,61 @@
     <![endif]-->
     <style>
 
-    section.theme {
-    margin-top: -620px;
-    margin-bottom: -98px;
-    padding-top: 0px;
-    height: 100%;
-    min-height: 100%;
-    background: url("assets/img/background/bg.jpg") center center;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    }
-    .btn-default {
-        color: #333;
-        background-color: #fff;
-        border-color: #ccc;
-    }
-    html, body {
-        width: 100%;
-        height: 100%;
-    }
-    #btnedit {
-        background-color: #c7ddef;
+        section.theme {
+            margin-top: -620px;
+            margin-bottom: -98px;
+            padding-top: 0px;
+            height: 100%;
+            min-height: 100%;
+            background: url("assets/img/background/bg.jpg") center center;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+        }
 
-    }
+        section.theme2 {
+            width: 100%;
+            background-color: #C1FFC1;
 
-    #calendar {
-        max-width: 700px;
-        margin: 0 auto;
+        }
 
-    }
-    .navbar-default.transparent {
-        border-width: 0px;
-        border-color: black;
-        -webkit-box-shadow: 0px 0px;
-        box-shadow: 0px 0px;
-        background-color: rgba(0, 0, 0, 0.0);
-        background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop(0%, rgba(0, 0, 0, 0.00)), color-stop(100%, rgba(0, 0, 0, 0.00)));
-        background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
-        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
-    }
+        section.theme3 {
+            width: 100%;
+            background-color: #BBFFFF;
+
+        }
+
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #btnedit {
+            background-color: #c7ddef;
+
+        }
+
+        #calendar {
+            max-width: 700px;
+            margin: 0 auto;
+
+        }
+
+        .navbar-default.transparent {
+            border-width: 0px;
+            border-color: black;
+            -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+            background-color: rgba(0, 0, 0, 0.0);
+            background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop(0%, rgba(0, 0, 0, 0.00)), color-stop(100%, rgba(0, 0, 0, 0.00)));
+            background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+        }
     </style>
 </head>
 
@@ -125,6 +141,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="viewreques">ประวัติคำขอร้อง</a></li>
                                 <li><a href="viewcomment">ประวัติการประเมินช่างภาพ</a></li>
+                                <li><a href="faq">FAQ : คำตอบที่พบบ่อย</a></li>
                                 <li><a href="logoutfacebook">ออกจากระบบ</a></li>
                             </ul>
 
@@ -149,7 +166,7 @@
 <section class="phofile">
 
 
-<!-- Contact Section -->
+    <!-- Contact Section -->
 
     <div class="container">
         <div class="row">
@@ -161,117 +178,249 @@
                 </ol>
 
                 <div class="col-lg-12 text-center">
-                <h2>ค้นหาช่างภาพ</h2>
-                <img src="assets\img\background\1.png" width="550" height="210"><br><br>
+                    <h2>ค้นหาช่างภาพ</h2>
+                    <img src="assets\img\background\1.png" width="550" height="210"><br><br>
 
+                    <div class="col-md-6 col-md-offset-3">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger alert-dismissible">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
-            </div>
-        </div>
-        <form method="get" action='s'>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" id="contactForm" novalidate>
-                        <div class="row control-group" align="center">
-                            <div class="form-inline" col-xs-4>
-                                &nbsp;&nbsp;&nbsp;
-                                <h7>วันที่ต้องการเริ่มถ่ายภาพ</h7>
-                                &nbsp;&nbsp;&nbsp;
-                                <input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" name="date"
-                                       required>
 
-                                &nbsp;&nbsp;&nbsp;
-                                <h7>ระยะเวลาถ่าย</h7>
-                                &nbsp;&nbsp;&nbsp;
-                                <select id="OperationType" class="form-control" name="time" onChange="hideshow()">
-                                    <option value="1">ครึ่งวัน</option>
-                                    <option value="2">เต็มวัน</option>
-                                </select>
-
-                                &nbsp;&nbsp;&nbsp;
-                                <h7 id="t1">ช่วงเวลา</h7>
-                                &nbsp;&nbsp;
-                                <select id="OperationNos" class="form-control" name="time2">
-                                    <option value="1">ช่วงเช้า</option>
-                                    <option value="2">ช่วงบ่าย</option>
-                                    <option value="3">ช่วงเย็น</option>
-                                </select>
-
-
-
-
-
-
-
-                                <script>
-                                    function hideshow()
-                                    {
-                                        var s1= document.getElementById('OperationType');
-                                        var s2= document.getElementById('OperationNos');
-
-                                        if( s1.options[s1.selectedIndex].text=="ครึ่งวัน")
-                                        {
-                                            s2.style.visibility = 'visible';
-                                            document.getElementById('t1').style.visibility = 'visible';
-
-                                        }
-                                        if( s1.options[s1.selectedIndex].text=="เต็มวัน")
-                                        {
-                                            s2.style.visibility = 'hidden';
-                                            document.getElementById('t1').style.visibility = 'hidden';
-
-
-                                        }
-                                        function hide()
-
-                                        {
-
-                                            document.getElementById('t1').style.visibility = 'hidden';}
-
-                                    }
-                                </script>
-
-                            </div>
-                        </div>
-                        <br>
-
-                        <form name="sentMessage" id="contactForm" novalidate>
-                            <div class="row control-group" align="center">
-                                <div class="form-inline" col-xs-4>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <h7>งบประมาณต่อระยะเวลาถ่าย (บาท)</h7>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <input class="form-control" type="text"  placeholder="งบประมาณ 0-99999"
-                                           name="money" pattern="[0-9]{5}" >
-
-                                    <h7>ชือช่างภาพ</h7>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <input class="form-control" type="text" min="0" placeholder="ชื่อช่างภาพ"
-                                           name="name"  >
-
-
-                                </div>
-                            </div>
-                            <div id="success"></div>
-                            <div class="row">
-                                <div class="form-group col-xs-12" align="center">
-
-                                    <br>
-                                    <button class="btn btn-success">ค้นหา</button>
-
-
-
-
-                                </div>
-                            </div>
-                        </form>
                 </div>
             </div>
-        </form>
+        </div>
+
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#Onesearch">ค้นหาแบบวันเดียว</a></li>
+            <li><a data-toggle="tab" href="#dd">ค้นหาแบบหลายวัน</a></li>
+        </ul>
+
+        <br/>
+
+        <div class="tab-content">
+            <div id="Onesearch" class="tab-pane fade in active">
+
+                    <form method="get" action='s'>
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                                <div name="sentMessage" id="contactForm" novalidate>
+                                    <div class="row control-group" align="center">
+                                        <div class="form-inline" col-lg-12>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <h7>วันที่ต้องการถ่ายภาพ</h7>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input class="form-control" type="date" min="<?php echo date("Y-m-d");?>"
+                                                   name="date">
+
+
+                                            &nbsp;&nbsp;&nbsp;
+                                            <h7>ระยะเวลาถ่าย</h7>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <select id="OperationType" class="form-control" name="time"
+                                                    onChange="hideshow()">
+                                                <option value="0"> กรุณาระบุ</option>
+                                                <option value="1">ครึ่งวัน</option>
+                                                <option value="2">เต็มวัน</option>
+                                            </select>
+
+                                            &nbsp;&nbsp;&nbsp;
+                                            <h7 id="t1">ช่วงเวลา</h7>
+                                            &nbsp;&nbsp;
+                                            <select id="OperationNos" class="form-control" name="time2">
+                                                <option value="0"> กรุณาระบุ</option>
+                                                <option value="1">เช้า</option>
+                                                <option value="2">บ่าย</option>
+                                                <option value="3">เย็น</option>
+                                            </select>
+
+
+                                            <script>
+                                                function hideshow() {
+                                                    var s1 = document.getElementById('OperationType');
+                                                    var s2 = document.getElementById('OperationNos');
+
+                                                    if (s1.options[s1.selectedIndex].text == "ครึ่งวัน") {
+                                                        s2.style.visibility = 'visible';
+                                                        document.getElementById('t1').style.visibility = 'visible';
+
+                                                    }
+                                                    if (s1.options[s1.selectedIndex].text == "เต็มวัน") {
+                                                        s2.style.visibility = 'hidden';
+                                                        document.getElementById('t1').style.visibility = 'hidden';
+
+
+                                                    }
+                                                    function hide() {
+
+                                                        document.getElementById('t1').style.visibility = 'hidden';
+                                                    }
+
+                                                }
+                                            </script>
+
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <form name="sentMessage" id="contactForm" novalidate>
+                                        <div class="row control-group" align="center">
+                                            <div class="form-inline" col-lg-12>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <h7>งบประมาณต่อระยะเวลาถ่าย (บาท)</h7>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <input title="โปรกรอกตัวเลขเท่านั้น" class="form-control" type="text"
+                                                       placeholder="งบประมาณ 1-99999"
+                                                       name="money" pattern="[0-9]{1,5}">
+
+                                                &nbsp;
+                                                <h7>ชือช่างภาพ</h7>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <input class="form-control" type="text" min="0"
+                                                       placeholder="เช่น วันเฉลิม"
+                                                       name="name">
+                                                <br> <br>
+                                                &nbsp;
+                                                <h7>รหัสช่างภาพ</h7>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <input class="form-control" type="text" min="0"
+                                                       placeholder="รหัสประจำตัวช่างภาพ"
+                                                       name="idpro">
+
+
+                                            </div>
+                                        </div>
+                                        <div id="success"></div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12" align="center">
+
+                                                <br>
+                                                <button class="btn btn-success">ค้นหา</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+            </div>
+            <!--###############################Muti Search#########################-->
+            <div id="dd" class="tab-pane">
+                <form method="post" action='mutisearch'>
+
+                        {!! csrf_field() !!}
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                                <div name="sentMessage" id="contactForm" novalidate>
+                                    <div class="row control-group" align="center">
+                                        <div class="form-inline" col-xs-4>
+                                            <div class="input_fields_wrap">
+                                                &nbsp;&nbsp;&nbsp;
+                                                <h7>วันที่ต้องการถ่ายภาพ</h7>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <input class="form-control" type="date"
+                                                       min="<?php echo date("Y-m-d");?>" name="date[]">
+
+
+                                                &nbsp;&nbsp;&nbsp;
+                                                <h7>ระยะเวลาถ่าย</h7>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <select id="OperationType2" class="form-control" name="time[]"
+                                                        onChange="hideshow3()">
+                                                    <option value="0">-</option>
+                                                    <option value="1">ครึ่งวัน</option>
+                                                    <option value="2">เต็มวัน</option>
+                                                </select>
+
+                                                &nbsp;&nbsp;&nbsp;
+                                                <h7 id="t2">ช่วงเวลา</h7>
+                                                &nbsp;&nbsp;
+                                                <select id="OperationNos2" class="form-control" name="time2[]">
+                                                    <option value="0">-</option>
+                                                    <option value="morning">เช้า</option>
+                                                    <option value="afternoon">บ่าย</option>
+                                                    <option value="evening">เย็น</option>
+                                                </select>
+                                                &nbsp;&nbsp;&nbsp;<a href="#" class="add_field_button"><img
+                                                            src="assets/img/icon/sign-add-icon.png" width="30"
+                                                            height="30"></a>
+
+
+                                                <script>
+                                                    function hideshow3() {
+                                                        var s1 = document.getElementById('OperationType2');
+                                                        var s2 = document.getElementById('OperationNos2');
+
+                                                        if (s1.options[s1.selectedIndex].text == "-") {
+                                                            s2.style.visibility = 'visible';
+                                                            document.getElementById('t2').style.visibility = 'visible';
+
+                                                        }
+                                                        if (s1.options[s1.selectedIndex].text == "ครึ่งวัน") {
+                                                            s2.style.visibility = 'visible';
+                                                            document.getElementById('t2').style.visibility = 'visible';
+
+                                                        }
+                                                        if (s1.options[s1.selectedIndex].text == "เต็มวัน") {
+                                                            s2.style.visibility = 'hidden';
+                                                            document.getElementById('t2').style.visibility = 'hidden';
+
+
+                                                        }
+                                                        function hide() {
+
+                                                            document.getElementById('t2').style.visibility = 'hidden';
+                                                        }
+
+                                                    }
+                                                </script>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div id="success"></div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12" align="center">
+
+                                        <br>
+                                        <button class="btn btn-success">ค้นหา</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+
+    </div>
+    </form>
     </div>
 
-</section>
+
+
 </section>
 
 
@@ -301,6 +450,83 @@
 <script src="assets/js/freelancer.js"></script>
 
 <script src="assets/nou/nouislider.min.js"></script>
+<script> $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 1;
+        var y = 0;//initlal text box count
+        $(add_button).click(function (e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+                x++; //text box increment
+
+                $(wrapper).append('<div><br>&nbsp;&nbsp;&nbsp; <h7>วันที่ต้องการถ่ายภาพ</h7> &nbsp;&nbsp;&nbsp; <input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" name="date[]">  '
+                        + '&nbsp;&nbsp;&nbsp; <h7>ระยะเวลาถ่าย</h7> &nbsp;&nbsp;&nbsp;<select id="OperationType3[' + y + ']" class="form-control" name="time[]" onChange=hideshow2(' + y + ')> '
+                        + '<option value="0">-</option><option value="1">ครึ่งวัน</option> <option value="2">เต็มวัน</option> </select>'
+                        + '&nbsp;&nbsp;&nbsp; <h7 id="t3[' + y + ']">ช่วงเวลา</h7> &nbsp;&nbsp;&nbsp; <select id="OperationNos3[' + y + ']" class="form-control" name="time2[]">'
+                        + '<option value="0">-</option><option value="morning">เช้า</option> <option value="afternoon">บ่าย</option> <option value="evening">เย็น</option> </select> '
+                        + '&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="" class="remove_field">  <img src="assets/img/icon/remove-button-md.png" width="25" height="25"></a></div>'); //add input box
+
+                y++;
+            }
+        });
+
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            var check = confirmDel();
+            if (check == true) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+                x--;
+            }
+
+        })
+    }); </script>
+
+<script>
+    function hideshow2(y) {
+        var s1 = document.getElementById('OperationType3[' + y + ']');
+        var s2 = document.getElementById('OperationNos3[' + y + ']');
+        console.log(s1);
+
+        if (s1.options[s1.selectedIndex].text == "-") {
+            s2.style.visibility = 'visible';
+            document.getElementById('t3[' + y + ']').style.visibility = 'visible';
+
+        }
+        if (s1.options[s1.selectedIndex].text == "ครึ่งวัน") {
+            s2.style.visibility = 'visible';
+            document.getElementById('t3[' + y + ']').style.visibility = 'visible';
+
+        }
+        if (s1.options[s1.selectedIndex].text == "เต็มวัน") {
+            s2.style.visibility = 'hidden';
+            document.getElementById('t3[' + y + ']').style.visibility = 'hidden';
+
+
+        }
+        function hide() {
+
+            document.getElementById('t3[' + y + ']').style.visibility = 'hidden';
+        }
+
+    }
+</script>
+<script>
+    function confirmDel() {
+
+        if (confirm("คุณต้องการลบใช่หรือไม่!") == true) {
+
+
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+</script>
 
 </body>
 

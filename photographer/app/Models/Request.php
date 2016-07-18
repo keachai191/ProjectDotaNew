@@ -9,5 +9,7 @@ class Request extends Model
 {
 
     protected $table ='requests';
+
+    protected $dates =['start','end'];
 }
 

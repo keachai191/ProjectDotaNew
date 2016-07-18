@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
-
+    <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 

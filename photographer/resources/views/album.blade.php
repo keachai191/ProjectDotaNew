@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>photographer</title>
-
+    <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Calendar -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -47,7 +47,7 @@
         }
 
         section.theme {
-            margin-top: -500px;
+            margin-top: -450px;
             margin-bottom: -100px;
             padding-top: 0px;
             height: 100%;
@@ -66,10 +66,8 @@
         section.phofile {
             padding: 20px;
             padding-bottom: 150px;
-            background: #EEEEEE;
+            background: #FFFFFF;
         }
-
-
 
         #btnedit {
             background-color: #c7ddef;
@@ -81,6 +79,7 @@
             margin: 0 auto;
 
         }
+
         .navbar-default.transparent {
             border-width: 0px;
             border-color: black;
@@ -160,6 +159,7 @@
 <section class="theme"></section>
 <section class="phofile">
     <div class="container"><br/><br/>
+        <a href="home" style="text-align: left" class="btn btn-warning" type="submit">ย้อนกลับ</a><br/><br/><br/>
 
         <a class="w3-btn-floating-large  w3-red"
            data-toggle="modal" data-target="#myModal">
@@ -203,16 +203,16 @@
 
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <input class="form-control" type="url"
-                                               size="30" name="url_al"/></div>
+                                        <input class="form-control" type="url" required
+                                               size="30" name="url_al"></div>
                                 </div>
 
                                 <h4>รายละเอียดอัลบั้ม</h4>
 
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                            <textarea class="form-control" type="text" value="" name="detail_al" rows="5"
-                                      cols="60">  </textarea>
+                            <textarea class="form-control" type="text" value="" required name="detail_al" rows="5"
+                                       cols="60">  </textarea>
                                     </div>
                                     <br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -225,8 +225,20 @@
 
 
                                     <center>
-                                        <button class="btn btn-success" type="submit">เพิ่มอัลบัม</button>
+                                        <button class="btn btn-success" type="submit"  onclick="return confirmAlbum();">เพิ่มอัลบัม</button>
                                     </center>
+                                    <script>
+                                        function confirmAlbum() {
+
+                                            var x = confirm(" <?php echo  "คุณต้องการเพิ้มAlbum ใช่หรือไม่! " ?> ")
+                                            if (x)
+                                                return true;
+                                            else {
+                                                return false;
+                                            }
+                                        }
+
+                                    </script>
 
                                 </div>
                                 &nbsp; &nbsp; &nbsp;

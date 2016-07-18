@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Album;
 use App\Http\Requests;
@@ -20,6 +21,13 @@ class PhotographerController extends Controller
     public function index()
 
     {
+
+        if (Auth::user()->status == 'ban') {
+
+
+            return view('errors.ban');
+        }
+
         $id = Auth::user()->id;
         $albums = DB::table('users')
             ->join('albums', 'users.id', '=', 'albums.user_id')
@@ -32,8 +40,26 @@ class PhotographerController extends Controller
             ->where('requests.checkview', '=', '1')
             ->get();
 
+        $comments = DB::table('users')
+            ->join('review', 'users.id', '=', 'review.user_id')
+            ->where('users.id', '=', $id)
+            ->orderBy('review.id', 'desc')
+            ->get();
+
+        $like  = DB::table('users')
+            ->join('review', 'users.id', '=', 'review.user_id')
+            ->where('review.like','=','1')
+            ->get();
+        $unlike  = DB::table('users')
+            ->join('review', 'users.id', '=', 'review.user_id')
+            ->where('review.like','=','2')
+            ->get();
+
         return view('photographer')->withAlbums($albums)
-            ->withRequests($requests);
+            ->withRequests($requests)
+            ->withComments($comments)
+            ->withLike($like)
+            ->withUnlike($unlike);
 
     }
 
@@ -65,6 +91,44 @@ class PhotographerController extends Controller
             ->withAccepts($accepts)
             ->withRejects($rejects);
     }
+
+    public function replycomment()
+    {
+
+        $id = Auth::user()->id;
+
+        $comments = DB::table('users')
+            ->join('review', 'users.id', '=', 'review.user_id')
+            ->where('users.id', '=', $id)
+            ->get();
+
+        return view('/replycomment')->withComments($comments);
+    }
+
+    public function changepassword()
+    {
+
+        $this->middleware('auth');
+
+        return view('auth.changepassword');
+    }
+
+    public function updatepassword($id)
+    {
+
+        $pwd = \Input::get('password');
+        $cpwd = \Input::get('Cpassword');
+
+        $newpwd =User::find($id);
+        $newpwd ->password =bcrypt($pwd);
+        if($pwd == $cpwd) {
+            $newpwd->save();
+        }else{
+            return back()->withErrors('Password Incorrect');
+        }
+        return redirect('/auth/logout');
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -1,10 +1,13 @@
 <?php
 namespace App\Http\Controllers;
+
 use App\Models\Review;
+use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -26,9 +29,21 @@ class ReviewController extends Controller
         $detail = \Input::get('detail');
         $name_facebook = \Input::get('name_facebook');
 
+        $new_check =  Review::where('facebook_id','=',$FacebookID[0]->id)
+            ->where('name_user','=',session()->get('UserName'))
+            ->get();
 
+        if(count($new_check) != 0)
+        {abort(404);}
 
         $new_request = new Review();
+
+        $date = date_create(date('Y-m-d H:i:sP'), timezone_open('asia/bangkok'));
+        date_timezone_set($date, timezone_open('asia/bangkok'));
+        $new_request->created_at =date_format($date, 'Y-m-d H:i:s');
+        $new_request->updated_at =date_format($date, 'Y-m-d H:i:s');
+
+
 
         $new_request->like = $like;
         $new_request->detail = $detail;
@@ -48,6 +63,9 @@ class ReviewController extends Controller
     public function getReviewCheck($username , $userphoto)
     {
 
+        $date = date_create(date('Y-m-d H:i:sP'), timezone_open('asia/bangkok'));
+        date_timezone_set($date, timezone_open('asia/bangkok'));
+
 
         $profiles = DB::table('requests')
             ->where('requests.name_facebook', '=',$username )
@@ -55,20 +73,35 @@ class ReviewController extends Controller
             ->where('requests.checkreques', '=',3 )
             ->get();
 
+
+
+
         $profiles2 = DB::table('review')
             ->where('review.name_facebook', '=',$username )
             ->where('review.name_user', '=',$userphoto )
             ->get();
 
+
+
+
         if($profiles == null){
             abort(403);}
 
-        else if ($profiles2 == null){
-            return redirect('/formreview'.session()->get('UserName'));
+        if (count($profiles2) == 0) {
+
+            foreach ($profiles as $checkprofiles) {
+                if (date('Y-m-d') >= $checkprofiles->start) {
+                    return redirect('/formreview' . session()->get('UserName'));
+                }
+            }
+            abort(405);
         }
+
         else abort(404);
 
+
     }
+
     public function viewcomment()
     {
         /*  $data = DB::table('users')
@@ -88,7 +121,6 @@ class ReviewController extends Controller
     }
 
 
-
     public function editComment($id)
     {
         /*  $data = DB::table('users')
@@ -104,22 +136,29 @@ class ReviewController extends Controller
 
 
     }
-    public function updateComment($id )
+
+    public function updateComment($id)
     {
-    /*  $data = DB::table('users')
-          ->join('requests', 'users.id', '=', 'requests.user_id')
-          ->where('requests.user_id','=', session()->get('FacebookEmail'))
-          ->get();
-        return $data;*/
+        /*  $data = DB::table('users')
+              ->join('requests', 'users.id', '=', 'requests.user_id')
+              ->where('requests.user_id','=', session()->get('FacebookEmail'))
+              ->get();
+            return $data;*/
+
+
 
         $detail = \Input::get('detail');
         $like = \Input::get('like');
 
 
-
         $user = Review::find($id);
         $user->detail = $detail;
         $user->like = $like;
+        $date = date_create(date('Y-m-d H:i:sP'), timezone_open('asia/bangkok'));
+        date_timezone_set($date, timezone_open('asia/bangkok'));
+        $user->created_at =date_format($date, 'Y-m-d H:i:s');
+        $user->updated_at =date_format($date, 'Y-m-d H:i:s');
+
 
 
         $user->save();
@@ -127,7 +166,27 @@ class ReviewController extends Controller
 
 
     }
-    public function destroyComment($id )
+
+    public function updatecommnet(Request $request, $id)
+    {
+
+        $replycomment = $request->input('replycomment');
+
+        $newcomment = \App\Models\Review::find($id);
+
+        $newcomment->replycomment = $replycomment;
+        $date = date_create(date('Y-m-d H:i:sP'), timezone_open('asia/bangkok'));
+        date_timezone_set($date, timezone_open('asia/bangkok'));
+        $newcomment->created_at =date_format($date, 'Y-m-d H:i:s');
+        $newcomment->updated_at =date_format($date, 'Y-m-d H:i:s');
+
+        $newcomment->save();
+
+        return redirect('/replycomment');
+
+    }
+
+    public function destroyComment($id)
     {
         /*  $data = DB::table('users')
               ->join('requests', 'users.id', '=', 'requests.user_id')

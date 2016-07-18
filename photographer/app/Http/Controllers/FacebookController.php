@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use DB;
 
+
 class FacebookController extends Controller
 {
 
@@ -37,12 +38,25 @@ class FacebookController extends Controller
 
         $db = UserFacebook::where('idfacebook', $user->getId())->first();
         if ($db) {
-
             DB::table('users_facebook')
                 ->where('users_facebook.idfacebook', '=', $user->getId())
                 ->get();
 
+            if ($db->status == 'ban') {
+                session()->forget('FacebookName');
+                return view('errors.banFacebook');
+            }
+
             return redirect('/');
+
+            /*} else if (DB::table('users_facebook')
+                ->where('users_facebook.status', '=', 'ban')
+                ->get()
+            )
+
+            {
+
+                return 'ban';*/
 
         } else {
             $facebook = new UserFacebook();
@@ -52,7 +66,7 @@ class FacebookController extends Controller
             $facebook->social = 'facebook';
             $facebook->email = $user->getEmail();
             $facebook->avatar = $user->getAvatar();
-
+            $facebook->status = 'userfacebook';
             $facebook->save();
 
             DB::table('users_facebook')
@@ -78,15 +92,53 @@ class FacebookController extends Controller
                 ->select('users.image')
                 ->get();
 
+
+            $UserPrimary = User::where('users.name', '=', $username)
+                ->select('users.id')
+                ->get();
+
+            session::put('UserPrimary', $UserPrimary[0]->id);
             session::put('UserAvatar', $UserAvatar);
+
 
 
             DB::table('users_facebook')
                 ->where('users_facebook.idfacebook', '=', session()->get('FacebookId'))
                 ->get();
 
-
             return redirect('formreques' . session()->get('FacebookName'));
+        }
+    }
+
+    public function mutisendreques($username)
+    {
+        if (!session()->get('FacebookName')) {
+
+            abort(402);
+
+        } else {
+            session::put("UserName", $username);
+
+            $UserAvatar = DB::table('users')
+                ->where('users.name', '=', $username)
+                ->select('users.image')
+                ->get();
+
+
+            $UserPrimary = User::where('users.name', '=', $username)
+                ->select('users.id')
+                ->get();
+
+            session::put('UserPrimary', $UserPrimary[0]->id);
+            session::put('UserAvatar', $UserAvatar);
+
+
+
+            DB::table('users_facebook')
+                ->where('users_facebook.idfacebook', '=', session()->get('FacebookId'))
+                ->get();
+
+            return redirect('mutiformreques' . session()->get('FacebookName'));
         }
     }
 
@@ -113,10 +165,9 @@ class FacebookController extends Controller
                 ->get();
 
 
-            return redirect('formreview' . session()->get('FacebookName') .'/'.$username);
+            return redirect('formreview' . session()->get('FacebookName') . '/' . $username);
         }
     }
-
 
 
     public function  checkloginfacebook()

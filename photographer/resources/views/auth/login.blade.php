@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
-
+    <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -77,8 +77,6 @@
             background: #EEEEEE;
         }
 
-
-
         #btnedit {
             background-color: #c7ddef;
 
@@ -89,6 +87,7 @@
             margin: 0 auto;
 
         }
+
         .navbar-default.transparent {
             border-width: 0px;
             border-color: black;
@@ -174,72 +173,52 @@
 <section class="phofile">
     <div class="container">
         <div class="col-md-6 col-md-offset-3">
-            {!! Form::open(["url" => "/auth/login"]) !!}
-            <table class="table">
-                @if(count($errors)>0)
-                    <tr>
-                        <td colspan="2"></td>
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <il> {{$error}} </il>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </tr>
-                @endif
 
-
+            @if(count($errors)>0)
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2"></td>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <il> {{$error}} </il>
+                            @endforeach
+                        </ul>
+                    </div>
+                </tr>
+            @endif
+            <br/>
+
+
+                <div class="modal-content">
+                    <div class="modal-body">
                         <h1 class="well text-center">เข้าสู่ระบบ</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>อีเมล์ของคุณ:</td>
-                    <td>
-                        {!! Form::email("email") !!}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        รหัสผ่าน :
-                    </td>
-                    <td>
-                        {!! Form::password("password") !!}
-                    </td>
-                </tr>
+                        <form action="/auth/login" method="post" enctype="multipart/form-data">
+                            {!! csrf_field() !!}
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="email">อีเมล์ : </label>
+                                    <input type="email" class="form-control" name="email"  placeholder="photographer@mail.com , @hotmail , @live">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd">รหัสผ่าน : </label>
+                                    <input type="password" class="form-control" name="password" placeholder="อย่างน้อย 6 ตัวอักษร">
+                                </div>
 
-                <tr>
+                                <center>
+                                    <button type="submit" class="btn btn-success">เข้าสู่ระบบ</button>
+                                </center>
+                            </form><br/><br/>
+                            <strong><big><a href="register">สมัครสมาชิก</a></big></strong>
 
-                    <!-- <td>
-                         <center><a href="/password/email">Forgot your password ?! </a></center><br/>
-                     </td>-->
-                    <td colspan="2">
-                        <center>{!! Form::submit("เข้าสู่ระบบ") !!}</center>
-                        <br/>
-                        <a href="register"  class="btn btn-success">สมัครสมาชิก</a>
-                    </td>
-                </tr>
-                {{--<tr>
-                    <td colspan="2" class="text-center">
-                         <a href="/auth/facebook">
-                    <div align="center"><img src="assets/img/portfolio/login_Facebook.jpg" width="200" height="50">
-                        <img></div>
-                </a>
-                    </td>
-                </tr>--}}
+                        </form>
+                    </div>
+                </div>
 
 
-            </table>
-            {!! Form::Close() !!}
         </div>
 
     </div>
 </section>
-
-
-
 
 
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->

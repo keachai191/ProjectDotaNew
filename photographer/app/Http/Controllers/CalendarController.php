@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Album;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Calendar;
@@ -14,54 +15,65 @@ use DB;
 class CalendarController extends Controller
 {
 
-
     public function send()
     {
         $id = Auth::user()->id;
+        $sum = [];
 
-        $calendars = DB::table('evenement')
-            ->where('user_id', '=', $id)
+        $calendars = Calendar::where('user_id', '=', $id)
             ->select("title", "start", "end", "url", "morning", "afternoon", "evening", "id")
             ->get();
+
         foreach ($calendars as $calendar) {
-            $calendar->title = $calendar->title . "\n\n" . $calendar->morning . "\n " . $calendar->afternoon . "\n" . $calendar->evening;
+            $calendar->title = $calendar->title . "\n\n" . $calendar->morning . " " . " " . $calendar->afternoon . " " . " " . $calendar->evening . "\n\n";
+            $calendar->end = $calendar->end->addHours(24);
+            $sum[] = $calendar;
         }
+
 
         $calens = DB::table('requests')
             ->where('user_id', '=', $id)
-            ->where('requests.checkview', '=', '0')
-            ->select("title", "start", "end", "morning", "afternoon", "evening")
+            ->where('requests.checkreques', '=', '3')
+            ->select("title", "start", "end", "morning", "afternoon", "evening", "url")
             ->get();
         foreach ($calens as $calen) {
-            $calen->title = $calen->title . "\n\n" . $calen->morning . "\n " . $calen->afternoon . "\n" . $calen->evening;
+            $calen->title = $calen->title . "\n\n" . $calen->morning ." " . " " . $calen->afternoon . " " . " " . $calen->evening;
+            $sum[] = $calen;
+
         }
 
-        return $calens + $calendars;
+        return $sum;
     }
 
 
-    public function sendHome()
+    public function sendHome(Request $request)
     {
         $id = Auth::user()->id;
 
-        $calendars = DB::table('evenement')
-            ->where('user_id', '=', $id)
-            ->select("title", "start", "end", "morning", "afternoon", "evening")
+        $sum = [];
+        $calendars = Calendar::where('user_id', '=', $id)
+            ->select("title", "start", "end", "url", "morning", "afternoon", "evening", "id")
             ->get();
+
         foreach ($calendars as $calendar) {
             $calendar->title = $calendar->title . "\n\n\n";
+            $calendar->end = $calendar->end->addHours(24);
+            $sum[] = $calendar;
         }
 
         $calens = DB::table('requests')
             ->where('user_id', '=', $id)
-            ->where('requests.checkview', '=', '0')
-            ->select("title", "start", "end", "morning", "afternoon", "evening")
+            ->where('requests.checkreques', '=', '3')
+            ->select("title", "start", "end", "morning", "afternoon", "evening", "url")
             ->get();
         foreach ($calens as $calen) {
             $calen->title = $calen->title . "\n\n\n";
+            $sum[] = $calen;
+
+
         }
 
-        return $calens + $calendars;
+        return $sum;
     }
 
     public function Showprofile()
@@ -69,18 +81,16 @@ class CalendarController extends Controller
 
         $ID = session()->get('UserId');
 
-        $calendars = DB::table('evenement')
-            ->where('user_id', '=', $ID[0]->id)
+        $sum = [];
+
+        $calendars = Calendar::where('user_id', '=', $ID[0]->id)
             ->select("title", "start", "end", "morning", "afternoon", "evening")
             ->get();
 
         foreach ($calendars as $calendar) {
             $calendar->title = $calendar->title . "\n\n\n";
-        }
-
-
-        foreach ($calendars as $calendar) {
-            $calendar->title = $calendar->title . "\n\n\n";
+            $calendar->end = $calendar->end->addHours(24);
+            $sum[] = $calendar;
         }
 
         $calens = DB::table('requests')
@@ -90,9 +100,11 @@ class CalendarController extends Controller
             ->get();
         foreach ($calens as $calen) {
             $calen->title = $calen->title . "\n\n\n";
+            $sum[] = $calen;
+
         }
 
-        return $calens + $calendars;
+        return $sum;
     }
 
 
@@ -118,6 +130,11 @@ class CalendarController extends Controller
         $calendar->morning = $morning;
         $calendar->afternoon = $afternoon;
         $calendar->evening = $evening;
+
+        $date = date_create(date('Y-m-d H:i:sP'), timezone_open('asia/bangkok'));
+        date_timezone_set($date, timezone_open('asia/bangkok'));
+        $calendar->created_at =date_format($date, 'Y-m-d H:i:s');
+        $calendar->updated_at =date_format($date, 'Y-m-d H:i:s');
 
         $calendar->save();
 
@@ -162,6 +179,11 @@ class CalendarController extends Controller
         $calendar = Calendar::find($Lastid);
         $calendar->url = $url . $Lastid;
 
+        $date = date_create(date('Y-m-d H:i:sP'), timezone_open('asia/bangkok'));
+        date_timezone_set($date, timezone_open('asia/bangkok'));
+        $calendar->created_at =date_format($date, 'Y-m-d H:i:s');
+        $calendar->updated_at =date_format($date, 'Y-m-d H:i:s');
+
         $calendar->save();
 
         $calendar = Calendar::where('id', '=', $id)
@@ -179,6 +201,22 @@ class CalendarController extends Controller
             ->select("title", "start", "end", "url", "morning", "afternoon", "evening", "id")
             ->get();
         return view('editcalendar')->withCalendars($calendars);
+
+    }
+    public function infocustomer($id)
+    {
+        $info = \App\Models\Request::where('requests.id','=',$id)
+        ->get();
+
+
+        $profile = DB::table('requests')
+            ->join('users','requests.user_id','=','users.id')
+            ->where('requests.id', '=', $id)
+            ->get();
+
+
+        return view('infocustomer')->withInfo($info)
+            ->withProfile($profile);
 
     }
 

@@ -4,31 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
-
-    <!-- Bootstrap Core CSS  -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/freelancer.css" rel="stylesheet">
-    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css">
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
-    <!-- ปุ่มวงกลมมม Css-->
+    <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
+    <!-- + -->
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
-    <!-- nav nav-tabs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Calendar -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href='assets/css/fullcalendar.css' rel='stylesheet'/>
     <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print'/>
     <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
@@ -36,161 +24,222 @@
     <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
     <script src='assets/js/fullcalendar.js'></script>
 
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar
+
+            ({
+                defaultDate: '2016-06-12',
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: 'http://localhost:8000/Calendarsend',
+                eventColor: '#008080'
+
+            });
+
+        });
+
+    </script>
+
+    <style>
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        section.theme {
+            margin-top: -450px;
+            margin-bottom: -100px;
+            padding-top: 0px;
+            height: 100%;
+            min-height: 100%;
+            background: url("assets/img/background/bg.jpg") center center;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+        }
+
+        section.phofile {
+            padding: 20px;
+            padding-bottom: 300px;
+            background: #FFFFFF;
+        }
+
+        .navbar-default.transparent {
+            border-width: 0px;
+            border-color: black;
+            -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+            background-color: rgba(0, 0, 0, 0.0);
+            background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop(0%, rgba(0, 0, 0, 0.00)), color-stop(100%, rgba(0, 0, 0, 0.00)));
+            background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+        }
+
+
+    </style>
 
 </head>
+<body class="off-canvas-nav-left" style="padding-top:30px;">
 
-<body id="page-top" class="index">
+<!-- Static navbar -->
+<nav class="navbar navbar-default transparent navbar-fixed-top">
 
-<!-- Navigation -->
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navtop">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
-            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="500" height="100"></a>
-
-
+            <br>
+            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="400" height="70"></a>
         </div>
+    </div>
 
-        @if(Auth::check())
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <br>
+            <li> @if(Auth::check())
 
 
-            <div align="right">
-                <div class="btn-group" role="group">
+                    <div align="right">
+                        <div class="btn-group" role="group">
 
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/img/portfolio/{{Auth::user()->image}}" width="30" height="30">
-                        ช่างภาพ {{Auth::user()->name}}
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/home">HOME</a></li>
-                        @if(Auth::user()->status == 'admin')
-                            <li><a href="admin">สำหรับผู้ดูแลระบบ</a></li>
-                        @endif
-                        <li><a href="auth/logout">ออกจากระบบ</a></li>
-                    </ul>
-                </div>
-            </div>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/img/portfolio/{{Auth::user()->image}}" width="30" height="30">
+                                ช่างภาพ {{Auth::user()->name}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @if(Auth::user()->status == 'admin')
+                                    <li><a href="admin">สำหรับผู้ดูแลระบบ</a></li>
+                                @endif
+                                <li><a href="home">Home</a></li>
+                                <li><a href="auth/logout">ออกจากระบบ</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-            @endif
+                @endif</li>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
+            <li><a href="#"></a></li>
 
-                </ul>
-            </div>
+
+        </ul>
+
+
     </div>
 
 </nav>
-<br/><br/><br/><br/><br/><br/>
-
-<div class="container"><br/><br/>
-
-    <form action="Calendar" method="get" enctype="multipart/form-data">
-
-        <button class="btn btn-warning" type="submit">ย้อนกลับ</button>
-    </form>
-    @foreach($calendars as $calendar)
-        <table class="col-md-12 table">
-            <tr>
-                <th class="col-md-3"><h4>หัวข้อ</h4></th>
-                <th class="col-md-2"><h4>วันที่เริ่มงาน</h4></th>
-                <th class="col-md-2"><h4>วันที่สิ้นสุดกานทำงาน</h4></th>
-                <th class="col-md-1"><h4>ช่วงเวลา</h4></th>
-                <th class="col-md-1"><h4>แก้ไข</h4></th>
-                <th class="col-md-1"><h4>ลบ</h4></th>
-            </tr>
 
 
-            <form action="/CalendarUpdate{{$calendar->id}}" method="post">
-                {!! csrf_field() !!}
+<section class="theme"></section>
+<section class="phofile">
+    <div class="container"><br/><br/>
 
-                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                <input type="hidden" name="url" value="/editcalendar">
+        <form action="Calendar" method="get" enctype="multipart/form-data">
+
+            <button class="btn btn-warning" type="submit">ย้อนกลับ</button>
+        </form>
+        @foreach($calendars as $calendar)
+            <table class="col-md-12 table">
                 <tr>
-                    <td><input class="form-control" type="text" name="title" value="{{$calendar->title}}"></td>
-                    <td><input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" name="start" size=""
-                               value="{{$calendar->start}}"></td>
-                    <td><input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" name="end"
-                               value="{{$calendar->end}}">
-                    <td>
+                    <th class="col-md-3"><h4>หัวข้อ</h4></th>
+                    <th class="col-md-2"><h4>วันที่เริ่มงาน</h4></th>
+                    <th class="col-md-2"><h4>วันที่สิ้นสุดกานทำงาน</h4></th>
+                    <th class="col-md-1"><h4>ช่วงเวลา</h4></th>
+                    <th class="col-md-1"><h4>แก้ไข</h4></th>
+                    <th class="col-md-1"><h4>ลบ</h4></th>
+                </tr>
 
 
-                        <input type="checkbox" name="morning"
-                               value="ช่วงเช้า" <?php if ($calendar->morning != null) echo "checked"; ?> > ช่วงเช้า <br>
-                        <input type="checkbox" name="afternoon"
-                               value="ช่วงบ่าย" <?php if ($calendar->afternoon != null) echo "checked"; ?> > ช่วงบ่าย
-                        <br>
-                        <input type="checkbox" name="evening"
-                               value="ช่วงเย็น" <?php if ($calendar->evening != null) echo "checked"; ?> > ช่วงเย็น <br>
-
-                    </td>
-
-                    <td>
-                        <button class="glyphicon glyphicon-pencil btn btn-success" type="submit"
-                                onclick="return confirmEdit();"> แก้ไข
-                        </button>
-                    </td>
-            </form>
-
-            <td>
-                <form action="/CalendarDestroy{{$calendar->id}}" method="post">
+                <form action="/CalendarUpdate{{$calendar->id}}" method="post">
                     {!! csrf_field() !!}
 
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="url" value="/editcalendar">
+                    <tr>
+                        <td><input class="form-control" type="text" name="title" value="{{$calendar->title}} "></td>
 
-                    <button class="glyphicon glyphicon-remove btn btn-danger" type="submit" onclick="return confirmDel();"> ลบ</button>
+                        <td>
+                            <input type="datetime" name="start" class="form-control" value="{{$calendar->start}}">
+                        </td>
 
-                    <script>
-                        function confirmDel() {
+                        <td>
+                            <input type="datetime" name="end" class="form-control" value="{{$calendar->end}}">
+                        </td>
 
-                            var x = confirm(" <?php echo  "คุณต้องการลบหัวข้อ {$calendar->title} ใช่หรือไม่! " ?> ")
-                            if (x)
-                                return true;
-                            else {
-                                return false;
-                            }
-                        }
+                        <td>
+                            <input type="checkbox" name="morning"
+                                   value="ช่วงเช้า" <?php if ($calendar->morning != null) echo "checked"; ?> > ช่วงเช้า
+                            <br>
+                            <input type="checkbox" name="afternoon"
+                                   value="ช่วงบ่าย" <?php if ($calendar->afternoon != null) echo "checked"; ?> >
+                            ช่วงบ่าย
+                            <br>
+                            <input type="checkbox" name="evening"
+                                   value="ช่วงเย็น" <?php if ($calendar->evening != null) echo "checked"; ?> > ช่วงเย็น
+                            <br>
+                        </td>
 
-                    </script>
-                    <script>
-                        function confirmEdit() {
-
-                            var x = confirm(" <?php echo  "คุณต้องแก้ไขหัวข้อ {$calendar->title} ใช่หรือไม่! " ?> ")
-                            if (x)
-                                return true;
-                            else {
-                                return false;
-                            }
-                        }
-
-                    </script>
-
-
+                        <td>
+                            <button class="glyphicon glyphicon-pencil btn btn-success" type="submit"
+                                    onclick="return confirmEdit();"> แก้ไข
+                            </button>
+                        </td>
                 </form>
-            </td>
-            </tr>
+
+                <td>
+                    <form action="/CalendarDestroy{{$calendar->id}}" method="post">
+                        {!! csrf_field() !!}
+
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+
+                        <button class="glyphicon glyphicon-remove btn btn-danger" type="submit"
+                                onclick="return confirmDel();"> ลบ
+                        </button>
+
+                        <script>
+                            function confirmDel() {
+
+                                var x = confirm(" <?php echo  "คุณต้องการลบหัวข้อ {$calendar->title} ใช่หรือไม่! " ?> ")
+                                if (x)
+                                    return true;
+                                else {
+                                    return false;
+                                }
+                            }
+
+                        </script>
+                        <script>
+                            function confirmEdit() {
+
+                                var x = confirm(" <?php echo  "คุณต้องแก้ไขหัวข้อ {$calendar->title} ใช่หรือไม่! " ?> ")
+                                if (x)
+                                    return true;
+                                else {
+                                    return false;
+                                }
+                            }
+
+                        </script>
 
 
-        </table>
-    @endforeach
-</div>
+                    </form>
+                </td>
+                </tr>
 
 
+            </table>
+        @endforeach
+    </div>
+</section>
 </body>
 </html>
 

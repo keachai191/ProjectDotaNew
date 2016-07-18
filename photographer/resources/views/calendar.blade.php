@@ -8,7 +8,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>photographer</title>
+    <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
+    <!-- + -->
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Calendar -->
@@ -27,10 +30,10 @@
             $('#calendar').fullCalendar
 
             ({
-                defaultDate: '2016-05-12',
+                defaultDate: '2016-06-12',
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
-                events: 'http://localhost:8000/CalendarsendHome',
+                events: 'http://localhost:8000/Calendarsend',
                 eventColor: '#008080'
 
             });
@@ -65,21 +68,16 @@
         section.phofile {
             padding: 20px;
             padding-bottom: 150px;
-            background: #EEEEEE;
+            background: #FFFFFF;
         }
 
-
-
-        #btnedit {
-            background-color: #c7ddef;
-
-        }
 
         #calendar {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
 
         }
+
         .navbar-default.transparent {
             border-width: 0px;
             border-color: black;
@@ -156,9 +154,10 @@
 </nav>
 
 
-    <section class="theme"></section>
-            <section class="phofile">
-                <div class="container">
+<section class="theme"></section>
+<section class="phofile">
+    <div class="container">
+        <a href="home" style="text-align: left" class="btn btn-warning" type="submit">ย้อนกลับ</a><br/><br/><br/>
 
         <a class="w3-btn-floating-large  w3-red"
            data-toggle="modal" data-target="#myModal">
@@ -179,49 +178,53 @@
                     <div class="modal-body">
                         <div class="form-inline" col-xs-4>
 
-                        <center> @if(Auth::check())
-                                <h4>รายละเอียดงาน</h4>
-                                <form action="storecalendar" method="post" enctype="multipart/form-data">
-                                    {!! csrf_field() !!}
-                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                                    <input type="hidden" name="url" value="/editcalendar">
+                            <center> @if(Auth::check())
+                                    <h4>รายละเอียดงาน</h4>
+                                    <form action="storecalendar" method="post" enctype="multipart/form-data">
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                        <input type="hidden" name="url" value="/editcalendar">
 
 
-                                    <textarea name="title" rows="" cols="60" class="form-control" required></textarea><br/>
+                                        <textarea name="title" rows="" cols="60" class="form-control"
+                                                  required></textarea><br/>
 
-                                    <br>รับงานตั้งแต่วันที่ <input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" size="30"
-                                                               name="start" value=""
-                                                               required>
-                                    จนถึงวันที่ <input class="form-control" type="date" min="<?php echo date("Y-m-d");?>" size="30" name="end"
-                                                      value=""
-                                                      required><br>
+                                        <br>รับงานตั้งแต่วันที่ <input class="form-control" type="date"
+                                                                       min="<?php echo date("Y-m-d");?>" size="30"
+                                                                       name="start" value=""
+                                                                       required>
+                                        จนถึงวันที่ <input class="form-control" type="date"
+                                                           min="<?php echo date("Y-m-d");?>" size="30" name="end"
+                                                           value=""
+                                                           required><br>
 
-                                    <label class="checkbox-inline"><input name="morning" type="checkbox"
-                                                                          value="ช่วงเช้า"
-                                                                          checked>ช่วงเช้า</label>
-                                    <label class="checkbox-inline"><input name="afternoon" type="checkbox"
-                                                                          value="ช่วงบ่าย">ช่วงบ่าย</label>
-                                    <label class="checkbox-inline"><input name="evening" type="checkbox"
-                                                                          value="ช่วงเย็น">ช่วงเย็น</label><br/>
+                                        <label class="checkbox-inline"><input name="morning" type="checkbox"
+                                                                              value="ช่วงเช้า"
+                                                                              checked>ช่วงเช้า</label>
+                                        <label class="checkbox-inline"><input name="afternoon" type="checkbox"
+                                                                              value="ช่วงบ่าย">ช่วงบ่าย</label>
+                                        <label class="checkbox-inline"><input name="evening" type="checkbox"
+                                                                              value="ช่วงเย็น">ช่วงเย็น</label><br/>
 
-                                    <button class="btn btn-success" type="submit">ยืนยันการเพิ่มข้อมูล</button>
+                                        <button class="btn btn-success" type="submit">ยืนยันการเพิ่มข้อมูล</button>
 
-                                    <br/><br/><br/>
-                                </form>
+                                        <br/><br/><br/>
+                                    </form>
 
 
-                            @endif
-                        </center>
+                                @endif
+                            </center>
 
-                    </div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-
-        <center><h2>ปฏิทินช่างภาพ</h2></center>
-        <div id='calendar'></div>
-    </section>
+    </div>
+    <center><h2>ปฏิทินช่างภาพ</h2></center>
+    <div id='calendar'></div>
+</section>
 </div>
 
 

@@ -9123,6 +9123,7 @@ function Calendar_constructor(element, overrides) {
 			header.enableButton('today');
 		}
 	}
+
 	
 
 
@@ -9178,6 +9179,8 @@ function Calendar_constructor(element, overrides) {
 		date = t.getNow();
 		renderView();
 	}
+
+
 	
 	
 	function gotoDate(zonedDateInput) {
@@ -11894,4 +11897,5 @@ fcViews.agendaWeek = {
 ;;
 
 return FC; // export for Node/CommonJS
+
 });

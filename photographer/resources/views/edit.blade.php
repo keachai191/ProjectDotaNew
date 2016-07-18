@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>photographer</title>
-
+    <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Calendar -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -65,10 +65,8 @@
         section.phofile {
             padding: 20px;
             padding-bottom: 150px;
-            background: #EEEEEE;
+            background: #FFFFFF;
         }
-
-
 
         #btnedit {
             background-color: #c7ddef;
@@ -80,6 +78,7 @@
             margin: 0 auto;
 
         }
+
         .navbar-default.transparent {
             border-width: 0px;
             border-color: black;
@@ -161,21 +160,40 @@
 
 <section class="phofile">
     <div class="container">
+        <a href="home" style="text-align: left" class="btn btn-warning" type="submit">ย้อนกลับ</a>
+    </div>
+    <div class="container">
+        <br>
+
         @if(Auth::check())
+            <div class="col-md-6 col-md-offset-3">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger alert-dismissible">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
             <div class="col-md-6 col-md-offset-3">
                 <form method="post" action="update/{{Auth::user()->id}}" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
 
                     <input type="hidden" name="_method" value="PATCH"/>
 
-                    <center><h2> แก้ไขข้อมูลช่างภาพ</h2></center> <br>
+                    <center><h2> แก้ไขข้อมูลช่างภาพ</h2></center>
+                    <br>
 
                     {{--<span class="col-md-2 glyphicon glyphicon-user" aria-hidden="true">รูปภาพ</span>
                     <input type="file"  name="image" src="{{Auth::user()->image}}" required><br><br>--}}
-                    <span class="glyphicon glyphicon-user" aria-hidden="true">รูปประจำตัว</span>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true">รูปประจำตัว </span>
 
                     <input type="file" name="image" class="form-control"
-                           value="{{Auth::user()->image}}"><br>
+                           value="{{Auth::user()->image}}">
+
+                 {{--   <p>(นามสกุลไฟล์ jpg หรือ png)</p> <br>--}}
 
                     <center><img src="assets/img/portfolio/{{Auth::user()->image}}" width="200" height="200"
                                  alt=""></center>
@@ -187,15 +205,17 @@
 
                     <span class=" glyphicon glyphicon-home" aria-hidden="true">ที่อยู่</span>
                     <input class="form-control" type="text" size="25" name="addres" value="{{Auth::user()->addres}}"
-                           required><br>
+                           placeholder="ที่อยู่ปัจจุบันของคุณ" required><br>
 
                     <ul class="list-inline">
                         <li><span class=" glyphicon glyphicon-phone" aria-hidden="true" data-toggle="tooltip"
-                                  data-placement="right" title="ตัวอย่างรูปแบบ https://www.facebook.com/photographer  ">สามารถติดต่อได้ที่(URL)</span>
+                                  data-placement="right" title="ตัวอย่างรูปแบบ https://www.facebook.com/photographer
+                        ">สามารถติดต่อได้ที่(URL)</span>
                         </li>
                     </ul>
                     <input class="form-control" type="url" size="25" name="website"
                            value="{{Auth::user()->website}}"
+                           placeholder="ตัวอย่างรูปแบบ https://www.facebook.com/photographer"
                            required><br>
 
 
@@ -216,21 +236,24 @@
                     </ul>
                     <input class="form-control" type="tel" size="25" name="phonenumber"
                            pattern="[0][8|9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
-                           value="0{{Auth::user()->phonenumber}}"
+                           value="{{Auth::user()->phonenumber}}"
+                           placeholder="ต้องขึ้นต้นด้วย 0 และมี 10 ตัวเลข ตัวอย่างรูปแบบ 09xxxxxxxx!"
                            required="true"/><br>
 
 
                     <span class=" glyphicon glyphicon-camera" aria-hidden="true"> ราคา(บาท)</span><br/>
 
                     <div class="form-control"> ครึ่งวัน : <input type="number" min="0" name="halfprice" size="7"
-                                                                 value="{{Auth::user()->fullprice}}"/>
+                                                                 placeholder="(บาท)"
+                                                                 value="{{Auth::user()->halfprice}}"/>
                         เต็มวัน : <input type="number" name="fullprice" min="0" size="7"
-                                         value="{{Auth::user()->halfprice}}"/></div>
+                                         placeholder="(ต้องมากกว่าจำนวนเงินครึ่งวัน)"
+                                         value="{{Auth::user()->fullprice}}"/></div>
                     <br/><br/>
 
-                    <button type="submit" class="btn btn-info " aria-label="Left Align">
+                    <button type="submit" class="btn btn-info " aria-label="Left Align" onclick="return confirmEdit();">
                     <span class="glyphicon glyphicon-edit glyphicon-align-center"
-                          aria-hidden="true">บันทึกการแก้ไข</span>
+                          aria-hidden="true" >บันทึกการแก้ไข</span>
                     </button>
                 </form>
             </div>
@@ -239,6 +262,19 @@
                 $(document).ready(function () {
                     $('[data-toggle="tooltip"]').tooltip();
                 });
+            </script>
+
+            <script>
+                function confirmEdit() {
+
+                    var x = confirm(" <?php echo  "คุณต้องการบันทึกข้อข้อมูลส่วนตัว ใช่หรือไม่! " ?> ")
+                    if (x)
+                        return true;
+                    else {
+                        return false;
+                    }
+                }
+
             </script>
 
 

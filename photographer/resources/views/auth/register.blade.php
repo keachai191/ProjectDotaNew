@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>Project DOTA</title>
+    <link rel="icon" href="assets/img/icon/favicon.ico" />
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -85,8 +86,6 @@
             background: #EEEEEE;
         }
 
-
-
         #btnedit {
             background-color: #c7ddef;
 
@@ -97,6 +96,7 @@
             margin: 0 auto;
 
         }
+
         .navbar-default.transparent {
             border-width: 0px;
             border-color: black;
@@ -138,7 +138,6 @@
             <br>
 
 
-
         </ul>
 
 
@@ -154,67 +153,129 @@
 <section class="phofile">
     <div class="container">
         <div class="col-md-6 col-md-offset-3">
-            {!! Form::open(["url" => "/auth/register"]) !!}
-            <table class="table">
-                @if(count($errors)>0)
-                    <tr>
-                        <td colspan="2"></td>
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <il> {{$error}} </il>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </tr>
-                @endif
+
+            @if(count($errors)>0)
                 <tr>
-                    <td colspan="2">
-                        <h1 class="well text-center">สมัครเป็นช่างภาพ</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>ชื่อที่ใช้ติดต่อ :</td>
-                    <td>
-                        {!! Form::text("name") !!}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <ul class="list-inline">
-                            อีเมล์ :
+                    <td colspan="2"></td>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <il> {{$error}} </il>
+                            @endforeach
                         </ul>
+                    </div>
+                </tr>
+            @endif
+            <br/>
 
-                    </td>
-                    <td>
-                        {!! Form::email("email") !!}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        รหัสผ่าน :
-                    </td>
-                    <td>
-                        {!! Form::password("password") !!}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        ยืนยันรหัสผ่าน :
-                    </td>
-                    <td>
-                        {!! Form::password("password_confirmation") !!}
-                    </td>
-                </tr>
 
-                <tr>
-                    <td colspan="2">
-                        <center> {!! Form::submit("สมัครสมาชิก") !!}</center>
-                    </td>
-                </tr>
-            </table>
-            {!! Form::Close() !!}
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h1 class="well text-center">สมัครเป็นช่างภาพ</h1>
+
+                    <form action="/auth/register" method="post" enctype="multipart/form-data">
+                        {!! csrf_field() !!}
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="email">ชื่อติดต่อ : </label>
+                                <input type="text" class="form-control" name="name"
+                                       placeholder="ชื่อแสดงตัวตน">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">อีเมล์ : </label>
+                                <input type="email" class="form-control" name="email"
+                                       placeholder="photographer@mail.com , @hotmail , @live">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">รหัสผ่าน : </label>
+                                <input type="password" class="form-control" name="password"
+                                       placeholder="อย่างน้อย 6 ตัวอักษร">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">ยืนยันรหัสผ่าน : </label>
+                                <input type="password" class="form-control" name="password_confirmation"
+                                       placeholder="ยืนยันรหัสผ่าน">
+                            </div>
+                            <div class="form-group">
+                               <center> {!! app('captcha')->display() !!}</center>
+                            </div>
+
+                            <center>
+                                <button type="submit" class="btn btn-success">สมัครสมาชิก</button>
+                            </center>
+                        </form>
+                        <br/><br/>
+
+                    </form>
+                </div>
+            </div>
+
         </div>
+    </div>
+
+
+    {{--{!! Form::open(["url" => "/auth/register"]) !!}
+    <table class="table">
+
+        <tr>
+            <td colspan="2">
+                <h1 class="well text-center">สมัครเป็นช่างภาพ</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>ชื่อที่ใช้ติดต่อ :</td>
+            <td>
+                {!! Form::text("name") !!}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul class="list-inline">
+                    อีเมล์ :
+                </ul>
+
+            </td>
+            <td>
+                {!! Form::email("email") !!}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                รหัสผ่าน :
+            </td>
+            <td>
+                {!! Form::password("password") !!}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ยืนยันรหัสผ่าน :
+            </td>
+            <td>
+                {!! Form::password("password_confirmation") !!}
+            </td>
+        </tr>
+            <td>
+
+            </td>
+        <td>
+            <center>
+                {!! app('captcha')->display() !!}
+
+                @if($errors->has('g-recaptcha-response'))
+                    <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+                @endif
+            </center>
+        </td>
+
+        <tr>
+            <td colspan="2">
+                <center> {!! Form::submit("สมัครสมาชิก") !!}</center>
+            </td>
+        </tr>
+    </table>
+    {!! Form::Close() !!}
+</div>--}}
 
     </div>
 </section>

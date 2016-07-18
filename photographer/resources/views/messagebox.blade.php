@@ -9,15 +9,34 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>photographer</title>
+    <title>Project DOTA</title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- ber -->
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <!-- Calendar -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href='assets/css/fullcalendar.css' rel='stylesheet'/>
+    <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print'/>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+    <script src='assets/js/fullcalendar.js'></script>
 
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar
+            ({
+                defaultDate: '2016-06-12',
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: 'http://localhost:8000/CalendarsendHome',
+                eventColor: '#008080'
+
+            });
+
+        });
+
+    </script>
     <style>
 
         html, body {
@@ -26,20 +45,52 @@
         }
 
         section.theme {
-            margin-top: 30px;
-            padding-bottom: 500px;
-            background-color: #EEEEEE;
+            margin-top: -500px;
+            margin-bottom: -50px;
+            padding-top: 0px;
+            height: 100%;
+            min-height: 100%;
+            background: url("assets/img/background/bg.jpg") center center;
             -moz-background-size: cover;
             -webkit-background-size: cover;
         }
 
-        .navbar.navbar-inverse {
-            padding: 5px;
+        section.box {
+            padding-top: 20px;
+            font-size: 5rem;
+            color: #080808;
+        }
+
+        section.phofile {
+            padding: 20px;
+            padding-bottom: 150px;
+            background: #FFFFFF;
+        }
+
+        .form{
+            float: left;
+        }
+
+        #btnedit {
+            background-color: #c7ddef;
 
         }
 
-        .city {
-            display: none;
+        #calendar {
+            max-width: 700px;
+            margin: 0 auto;
+
+        }
+
+        .navbar-default.transparent {
+            border-width: 0px;
+            border-color: black;
+            -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+            background-color: rgba(0, 0, 0, 0.0);
+            background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop(0%, rgba(0, 0, 0, 0.00)), color-stop(100%, rgba(0, 0, 0, 0.00)));
+            background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.00) 100%);
         }
 
 
@@ -49,7 +100,7 @@
 <body class="off-canvas-nav-left" style="padding-top:30px;">
 
 <!-- Static navbar -->
-<nav class="navbar navbar-inverse  navbar-fixed-top">
+<nav class="navbar navbar-default transparent navbar-fixed-top">
 
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navtop">
@@ -61,13 +112,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">photographer dota</a>
+            <br>
+            <a href="/"><img src="assets/img/portfolio/Logo3.png" width="400" height="70"></a>
         </div>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+            <br>
             <li> @if(Auth::check())
 
 
@@ -84,7 +137,8 @@
                                 @if(Auth::user()->status == 'admin')
                                     <li><a href="admin">สำหรับผู้ดูแลระบบ</a></li>
                                 @endif
-                                <li><a href="home">HOME</a></li>
+                                <li><a href="home">Home</a></li>
+                                <li><a href="changepassword/{{Auth::user()->id}}">เปลี่ยนรหัสผ่าน</a></li>
                                 <li><a href="auth/logout">ออกจากระบบ</a></li>
                             </ul>
                         </div>
@@ -93,61 +147,105 @@
                 @endif</li>
 
             <li><a href="#"></a></li>
+
+
         </ul>
 
 
     </div>
+    <!-- /.navbar-collapse -->
 
+    <!-- /.container-fluid -->
 </nav>
 
 
 <section class="theme">
-    <div class="container">
+</section>
 
-        <nav class="w3-sidenav w3-info w3-card-2" style="width:130px">
-            <div class="w3-container">
-                <h5>เมนู</h5>
-            </div>
-            <a href="#" class="tablink" onclick="openCity(event, '1')">คำร้องขอถึงคุณ</a>
-            <a href="#" class="tablink" onclick="openCity(event, '2')">ยอมรับ</a>
-            <a href="#" class="tablink" onclick="openCity(event, '3')">ปฏิเสธ</a>
-        </nav>
+<section class="phofile">
+    <div class="container"><br/><br/>
+        <a href="home" style="text-align: left" class="btn btn-warning" type="submit">ย้อนกลับ</a><br/>
 
-        <div style="margin-left:130px">
-            <div class="w3-padding"><h2> คำร้องขอถึงช่างภาพ </h2></div>
+        <h2>ประวัติการจ้างงาน</h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">คำขอที่ยังไม่ได้ดำเดินการ</a></li>
+            <li><a data-toggle="tab" href="#menu1">คำขอที่ตอบรับ</a></li>
+            <li><a data-toggle="tab" href="#menu2">คำขอที่ปฏิเสธ</a></li>
+        </ul>
 
-            {{--  opacity left zoom--}}
-            <div id="1" class="w3-container city w3-animate-left">
-                <h5>คำร้องขอที่ยังไม่ได้ดำเนินการ</h5>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>อยู่ในช่วงดำเนินการ</h3>
 
                 <div class="row">
                     @foreach($requests as $reque)
 
-                        <div class="col-md-6">
-                            <p>จากคุณ {{$reque->name_facebook}}</p>
-
-                            <p><img src="{{$reque->facebook_avatar}}"></p>
-
-                            <p>ข้อความ : {{$reque->detail_request}}</p>
-
-                            <p>วันที่ต้องการถ่ายภาพ {{$reque->start}}</p>
+                        <div class="col-md-4">
+                            <p style="display: inline"><big>รหัสแบบฟอร์มบันทึก :</big> <strong
+                                        style="color: #c87f0a">#RQ0{{$reque->id}}</strong></p>
 
 
-                            <form action="/RequestUpdate/{{$reque->id}}/" method="post" enctype="multipart/form-data">
-                                {!! csrf_field() !!}
+                            <br/>
 
-                                <input type="hidden" name="checkview" value="0">
+                            <p style="display: inline"><big>คุณ : </big><strong
+                                        style="color: #0e6f5c">{{$reque->name_facebook}}</strong></p><br/>
 
-                                <button style="font-size: 12px;" class="btn btn-success" name="checkreques"
-                                        type="submit" value="3"
-                                        onclick="return confirmreques();"> ตอบรับคำขอ
-                                </button>
+                            <p style="display: inline"><big></big>
 
-                                <button style="font-size: 12px;" class="btn btn-danger" name="checkreques"
-                                        type="submit" value="0"
-                                        onclick="return confirmDel();"> ปฏิเสธคำขอ
-                                </button>
-                            </form>
+                            <p><img src="{{$reque->facebook_avatar}}" width="100" height="100"></p><br/>
+
+                            <br/>
+
+                            <p style="display: inline"><big>วันที่ต้องการถ่ายภาพ : </big><strong
+                                        style="color: #0e6f5c">{{$reque->start}}</strong><br/>
+
+                                ช่วง: @if(!$reque->morning==null  and  !$reque->afternoon==null and  !$reque->evening==null)
+                                    <input type="text"
+                                           style=" border: 2px solid #3498db"
+                                           value="เต็มวัน"
+                                           readonly>
+                                @else   <input type="text"
+                                               style=" border: 2px solid #3498db"
+                                               value="{{$reque->morning}} {{$reque->afternoon}} {{$reque->evening }}"
+                                               readonly> @endif<br/>
+
+                            <p style="display: inline"><big>รายละเอียดงาน :</big><textarea
+                                        style=" border: 2px solid #3498db"
+                                        class="form-control" name="detail_request"
+                                        rows="3"
+                                        cols="40"
+                                        readonly>{{$reque->detail_request}}</textarea></p><br/>
+
+
+                                <form action="/RequestUpdate/{{$reque->id}}/" method="post"
+                                      enctype="multipart/form-data">
+                                    {!! csrf_field() !!}
+
+                                    <input type="hidden" name="checkview" value="0">
+                                    <input type="hidden" name="morning" value="{{$reque->morning}} ">
+                                    <input type="hidden" name="afternoon" value="{{$reque->afternoon}}">
+                                    <input type="hidden" name="evening" value="{{$reque->evening }}">
+                                    <input type="hidden" name="name_facebook" value="{{$reque->name_facebook }}">
+
+                                    <button class="form btn btn-success" style="font-size: 12px;" name="checkreques"
+                                            type="submit" value="3"
+                                            onclick="return confirmreques();"> ตอบรับคำขอ
+                                    </button>
+
+                                </form>
+
+                                <form action="/RequestDelete/{{$reque->id}}/" method="post"
+                                      enctype="multipart/form-data">
+                                    {!! csrf_field() !!}
+                                    <input type="hidden" name="checkview" value="0">
+                                    <input type="hidden" name="name_facebook" value="{{$reque->name_facebook }}">
+                                    <button class="form btn btn-danger" style="font-size: 12px;"  name="checkreques"
+                                            type="submit" value="0"
+                                            onclick="return confirmDel();"> ปฏิเสธคำขอ
+                                    </button>
+                                </form>
+
+                            <br/>
 
                             <script>
                                 function confirmDel() {
@@ -174,68 +272,102 @@
                         </div>
                     @endforeach
                 </div>
-                <hr/>
             </div>
-
-
-            <div id="2" class="w3-container city w3-animate-left">
-                <h5>ประวัติคำร้องขอการยอมรับ</h5>
+            <div id="menu1" class="tab-pane fade">
+                <h3>ตอบรับ</h3>
 
                 <div class="row">
                     @foreach($accepts as $accept)
-                        <div class="col-md-6">
-                            <p>จากคุณ {{$accept->name_facebook}}</p>
+                        <div class="col-md-4">
+                            <p style="display: inline"><big>รหัสแบบฟอร์มบันทึก :</big> <strong
+                                        style="color: #c87f0a">#RQ0{{$accept->id}}</strong></p>
 
-                            <p><img src="{{$accept->facebook_avatar}}"></p>
+                            <br/>
 
-                            <p>ข้อความ : {{$accept->detail_request}}</p>
+                            <p style="display: inline"><big>คุณ : </big><strong
+                                        style="color: #0e6f5c">{{$accept->name_facebook}}</strong></p><br/>
 
-                            <p>วันที่คุณตอบรับคำขอ {{$accept->updated_at}}</p>
+                            <p style="display: inline"><big></big>
+
+                            <p><img src="{{$accept->facebook_avatar}}" width="100" height="100"></p>
+
+                            <br/>
+
+                            <p style="display: inline"><big>วันที่คุณตอบรับคำขอ : </big><strong
+                                        style="color: #0e6f5c">{{$accept->start}}</strong></p><br/>
+
+                            ช่วง: @if(!$accept->morning==null  and  !$accept->afternoon==null and  !$accept->evening==null)
+                                <input type="text"
+                                       style=" border: 2px solid #3498db"
+                                       value="เต็มวัน"
+                                       readonly>
+                            @else   <input type="text"
+                                           style=" border: 2px solid #3498db"
+                                           value="{{$accept->morning}} {{$accept->afternoon}} {{$accept->evening }}"
+                                           readonly> @endif<br/>
+
+                            <p style="display: inline"><big>รายละเอียดงาน :</big><textarea
+                                        style=" border: 2px solid #3498db"
+                                        class="form-control" name="detail_request"
+                                        rows="3"
+                                        cols="40"
+                                        readonly>{{$accept->detail_request}}</textarea></p>
+
 
                         </div>
                     @endforeach
                 </div>
-                <hr/>
             </div>
-
-
-            <div id="3" class="w3-container city w3-animate-left">
-                <h5>ประวัติคำร้องขอการปฏิเสธ</h5>
+            <div id="menu2" class="tab-pane fade">
+                <h3>ปฏิเสธ</h3>
 
                 <div class="row">
                     @foreach($rejects as $reject)
-                        <div class="col-md-6">
-                            <h6>จากคุณ {{$reject->name_facebook}}</h6>
+                        <div class="col-md-4">
+                            <p style="display: inline"><big>รหัสแบบฟอร์มบันทึก :</big> <strong
+                                        style="color: #c87f0a">#RQ0{{$reject->id}}</strong></p>
 
-                            <p><img src="{{$reject->facebook_avatar}}"></p>
+                            <br/>
 
-                            <p>ข้อความ : {{$reject->detail_request}}</p>
+                            <p style="display: inline"><big>คุณ : </big><strong
+                                        style="color: #0e6f5c">{{$reject->name_facebook}}</strong></p><br/>
 
-                            <p>วันที่คุณปฏิเสธ {{$reject->updated_at}}</p>
+                            <p style="display: inline"><big></big>
+
+                            <p><img src="{{$reject->facebook_avatar}}"></p><br/>
+
+
+                            <br/>
+
+                            <p style="display: inline"><big>วันที่คุณปฏิเสธ : </big><strong
+                                        style="color: #0e6f5c">{{$reject->start}}</strong></p><br/>
+
+                            ช่วง: @if(!$reject->morning==null  and  !$reject->afternoon==null and  !$reject->evening==null)
+                                <input type="text"
+                                       style=" border: 2px solid #3498db"
+                                       value="เต็มวัน"
+                                       readonly>
+                            @else   <input type="text"
+                                           style=" border: 2px solid #3498db"
+                                           value="{{$reject->morning}} {{$reject->afternoon}} {{$reject->evening }}"
+                                           readonly> @endif<br/>
+
+                            <p style="display: inline"><big>รายละเอียดงาน :</big><textarea
+                                        style=" border: 2px solid #3498db"
+                                        class="form-control" name="detail_request"
+                                        rows="3"
+                                        cols="40"
+                                        readonly>{{$reject->detail_request}}</textarea></p>
+
 
                         </div>
                     @endforeach
                 </div>
-                <hr/>
             </div>
-        </div>
 
-        <script>
-            function openCity(evt, cityName) {
-                var i, x, tablinks;
-                x = document.getElementsByClassName("city");
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
-                }
-                tablinks = document.getElementsByClassName("tablink");
-                for (i = 0; i < x.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" w3-green", "");
-                }
-                document.getElementById(cityName).style.display = "block";
-                evt.currentTarget.className += " w3-green";
-            }
-        </script>
+        </div>
     </div>
+
 </section>
 
 

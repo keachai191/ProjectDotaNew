@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Be right back.</title>
+    <title>BAN</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>photographer</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Calendar -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <style>
         html, body {
@@ -42,10 +54,9 @@
     <div class="content">
         <div class="title">กรุณาล็อคอินเฟซบุ๊กในระบบ <br> เพื่อส่งคำร้องขอช่างภาพ</div><br/>
 
-       {{-- <a href="facebooklogin">
-            <div align="center"><img src="assets/img/portfolio/login_Facebook.jpg" width="300" height="60">
-                <img></div>
-        </a>--}}
+        <a href="/" type="button" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> กลับไปหน้าแรก
+        </a>
 
 
     </div>

@@ -43,7 +43,7 @@ class PhotographerController extends Controller
         $comments = DB::table('users')
             ->join('review', 'users.id', '=', 'review.user_id')
             ->where('users.id', '=', $id)
-            ->orderBy('review.id', 'desc')
+            ->orderBy('review.created_at', 'desc')
             ->get();
 
         $like  = DB::table('users')

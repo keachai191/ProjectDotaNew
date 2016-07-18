@@ -65,7 +65,7 @@ class ProfileController extends Controller
             ->get();
         $comment = DB::table('review')
             ->where('review.name_user', '=', $username)
-            ->orderBy('review.id', 'desc')
+            ->orderBy('review.created_at', 'DESC')
             ->get();
         $like  = DB::table('review')
             ->where('review.name_user', '=', $username)
